@@ -8,4 +8,15 @@
     <body>
         <div id=testArea></div> 
     </body>
+
+    <script src="/socket.io/socket.io.js"></script>
+        <script>
+            let socket = io();
+
+            //default connect event
+            socket.on('connect', function() {
+                console.log("connected!");
+            });
+        </script>
+
 </html>
