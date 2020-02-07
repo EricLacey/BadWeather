@@ -1,6 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
 
-    <body></body>
+    </head>
+
+    <body>
+        <a-scene>
+            <a-assets timeout="3000">
+                <!-- all assets that can be cached by browser -->
+                <a-asset-item crossorigin="anonymous" id="maze" src="/assets/models/maze test.obj">
+                <a-asset-item crossorigin="anonymous" id="mazemtl" src="/assets/textures/maze test.mtl">
+            </a-assets>
+
+            <a-entity position="0 1.2 5 " camera look-controls wasd-controls>
+                <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
+                          raycaster="far:10; interval:100; objects:.clickable"></a-entity>
+            </a-entity>
+
+            <a-entity environment="skyType: color;
+                                   skyColor: #c4feff; 
+                                   ground: hills; 
+                                   groundColor: #eddcb9;
+                                   fog: 0.8;
+                                   groundTexture: none"></a-entity>
+
+            <a-entity
+                id='maze'
+                obj-model="obj: #maze; mtl: #mazemtl"
+                scale="1 1 1"></a-entity>
+
+        </a-scene>
+    </body>
 </html>

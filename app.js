@@ -12,6 +12,10 @@ app.get('/', function(req,res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
+app.get('/student', function(req,res) {
+    res.sendFile(__dirname + '/public/student.html');
+});
+
 //finally, start server
 server.listen(LISTEN_PORT);
 console.log('listening to port: ' + LISTEN_PORT);
