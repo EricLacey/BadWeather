@@ -48,7 +48,7 @@ function clearArea() {
 
 function timer() {
     // Set the date we're counting down to
-    let secs = 30
+    let secs = 10;
     let now = new Date().getTime();
     let endTime = new Date().setTime(now + (secs * 1000))
 
@@ -69,7 +69,14 @@ function timer() {
         // If the count down is finished, write some text
         if (distance < 0) {
             clearInterval(x);
-            document.getElementById("timer").innerHTML = "EXPIRED";
+            document.getElementById("timer").innerHTML = "Done!";
+            
+            // save canvas image as data url (png format by default)
+            var canvas = document.getElementById('myCanvas')
+            var dataURL = canvas.toDataURL();
+
+            document.getElementById('canvasImg').src = dataURL;
+
         }
     }, 500);
 }
