@@ -33,6 +33,11 @@ socketIO.on('connection', function(socket) {
         console.log(socket.id + ' has disconnected');
     });
 
+    socket.on("ImageToSocket", function(data){
+        socketIO.sockets.emit("imageToStudent", data)
+    });
+
+
 });
 
 //finally, start server

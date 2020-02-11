@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <h1>test</h1>
+        
 
     </head>
 
     <body>
-        <div id=testArea></div> 
+        <h1>test</h1>
+
+        <div id=testText></div>
+        <img id=testArea src="">
     </body>
 
     <script src="/socket.io/socket.io.js"></script>
@@ -18,8 +21,9 @@
                 console.log("connected!");
             });
 
-            socket.on("sendImage", function(data){
-                
+            socket.on("imageToStudent", function(data){
+
+                document.getElementById("testArea").src = data
             })
         </script>
 

@@ -67,11 +67,13 @@
                         var canvas = document.getElementById('myCanvas')
                         var dataURL = canvas.toDataURL();
 
+                        socket.emit("ImageToSocket", dataURL)
+
                         document.getElementById('canvasImg').src = dataURL;
                         document.getElementById("canvasImg").setAttribute("style", "border:2px solid black; display:inline")
                         document.getElementById("myCanvas").setAttribute("style", "border:2px solid black; display:none")
 
-
+                        
                     }
                 }, 500);
             }
