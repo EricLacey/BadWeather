@@ -14,7 +14,10 @@
                 <a-asset-item crossorigin="anonymous" id="mazemtl" src="/assets/textures/maze test.mtl">
             </a-assets>
 
+            <a-entity id="testArea" position="0 1.2 5 "></a-entity>
+
             <a-entity position="0 1.2 5 " camera look-controls wasd-controls>
+                
                 <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                           raycaster="far:10; interval:100; objects:.clickable"></a-entity>
             </a-entity>
@@ -32,5 +35,28 @@
                 scale="1 1 1"></a-entity>
 
         </a-scene>
+
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            let socket = io();
+
+            //default connect event
+            socket.on('connect', function() {
+                console.log("connected!");
+            });
+
+            socket.on("imageToStudent", function(data){
+
+                console.log("request recieved!")
+
+                newObject = document.createElement("a-box")
+                newObject.setAttribute("src", data)
+                newObject.setAttribute("material", "color:none")
+
+                document.getElementById("testArea").appendChild(newObject)
+                //document.getElementById("testObject").src = data
+            })
+        </script>
     </body>
 </html>
