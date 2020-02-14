@@ -14,9 +14,9 @@
                 <a-asset-item crossorigin="anonymous" id="mazemtl" src="/assets/textures/maze test.mtl">
             </a-assets>
 
-            <a-entity id="playerRig">
+            <a-entity id="playerRig" wasd-controls look-controls >
 
-                <a-entity position="0 1.2 0 " camera look-controls wasd-controls>
+                <a-entity position="0 1.2 0 " camera >
                 
                     <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                               raycaster="far:10; interval:100; objects:.clickable"></a-entity>
@@ -55,7 +55,7 @@
 
                 newObject = document.createElement("a-plane")
                 newObject.setAttribute("src", data)
-                newObject.setAttribute("position", "0 1 0.2")
+                newObject.setAttribute("position", "-0.35 -0.5")
                 newObject.setAttribute("height", "0.2")
                 newObject.setAttribute("width", "0.2")
                 newObject.setAttribute("material", "color:none; side:double")
