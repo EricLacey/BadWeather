@@ -14,13 +14,16 @@
                 <a-asset-item crossorigin="anonymous" id="mazemtl" src="/assets/textures/maze test.mtl">
             </a-assets>
 
-            <a-entity id="testArea" position="0 1.2 5 "></a-entity>
+            <a-entity id="playerRig">
 
-            <a-entity position="0 1.2 5 " camera look-controls wasd-controls>
+                <a-entity position="0 1.2 0 " camera look-controls wasd-controls>
                 
-                <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
-                          raycaster="far:10; interval:100; objects:.clickable"></a-entity>
+                    <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
+                              raycaster="far:10; interval:100; objects:.clickable"></a-entity>
+                </a-entity>
+
             </a-entity>
+            
 
             <a-entity environment="skyType: color;
                                    skyColor: #c4feff; 
@@ -50,11 +53,14 @@
 
                 console.log("request recieved!")
 
-                newObject = document.createElement("a-box")
+                newObject = document.createElement("a-plane")
                 newObject.setAttribute("src", data)
-                newObject.setAttribute("material", "color:none")
+                newObject.setAttribute("position", "0 1 0.2")
+                newObject.setAttribute("height", "0.2")
+                newObject.setAttribute("width", "0.2")
+                newObject.setAttribute("material", "color:none; side:double")
 
-                document.getElementById("testArea").appendChild(newObject)
+                document.getElementById("playerRig").appendChild(newObject)
                 //document.getElementById("testObject").src = data
             })
         </script>
