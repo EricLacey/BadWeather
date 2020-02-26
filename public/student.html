@@ -63,6 +63,13 @@
                 document.getElementById("playerRig").appendChild(newObject)
                 //document.getElementById("testObject").src = data
             })
+
+            function sendXY(){
+                let position = {x: document.getElementById("playerRig").getAttribute("position").x, y: document.getElementById("playerRig").getAttribute("position").z}
+                socket.emit("xy", position)
+            }
+
+            let locationSend = setInterval(sendXY, 100)
         </script>
     </body>
 </html>

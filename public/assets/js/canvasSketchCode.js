@@ -1,20 +1,22 @@
-//https://www.codicode.com/art/how_to_draw_on_a_html5_canvas_with_a_mouse.aspx
+//https://www.codicode.com/art/how_to_Draw_on_a_html5_canvas_with_a_mouse.aspx
 
 var mousePressed = false;
 var lastX, lastY;
 var ctx;
 
-function InitThis() {
+function InitSketch() {
     ctx = document.getElementById('myCanvas').getContext("2d");
 
     $('#myCanvas').mousedown(function (e) {
+        console.log("drawing")
         mousePressed = true;
-        Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+        DrawSketch(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
     });
 
     $('#myCanvas').mousemove(function (e) {
+        console.log("moving")
         if (mousePressed) {
-            Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+            DrawSketch(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
         }
     });
 
@@ -26,7 +28,7 @@ function InitThis() {
     });
 }
 
-function Draw(x, y, isDown) {
+function DrawSketch(x, y, isDown) {
     if (isDown) {
         ctx.beginPath();
         ctx.strokeStyle = $('#selColor').val();

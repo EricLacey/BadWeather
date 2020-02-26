@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head></head>
-<body onload="InitThis(); timer();">
+<body onload="InitSketch(); timer();">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="assets/js/canvasCode.js"></script>
-    <div align="center">
+    <script type="text/javascript" src="assets/js/canvasSketchCode.js"></script>
+    <script type="text/javascript" src="assets/js/mapCode.js"></script>
+    <div id="drawingApp" align="center">
         <canvas id="myCanvas" width="300" height="300" style="border:2px solid black"></canvas>
         <img id=canvasImg src="" style="border:2px solid black; display:none">
         <br /><br />
@@ -25,9 +26,17 @@
             <option value="yellow">yellow</option>
             <option value="gray">gray</option>
         </select>
-        <div id="timer">test timer</div>
+        <div id="timer">timer</div>
         
     </div>
+
+    <div id="mapDiv" align="center" style="display:none">
+        <canvas id="mapCanvas" width="300" height="300" style="border:2px solid black"></canvas>
+        <div><button>Hot</button>
+            <button>Cold</button></div>
+        
+    </div>
+
 
         <script src="/socket.io/socket.io.js"></script>
         <script>
@@ -37,6 +46,11 @@
             socket.on('connect', function() {
                 console.log("connected!");
             });
+
+            socket.on("xyToProfessor", function(data){
+                console.log("(" + data.x + ", " + data.y + ")")
+                DrawMap(data.x * 20, data.y * 20)
+            })
 
             function timer() {
                 // Set the date we're counting down to
@@ -69,10 +83,13 @@
 
                         socket.emit("ImageToSocket", dataURL)
 
-                        document.getElementById('canvasImg').src = dataURL;
-                        document.getElementById("canvasImg").setAttribute("style", "border:2px solid black; display:inline")
-                        document.getElementById("myCanvas").setAttribute("style", "border:2px solid black; display:none")
+                        //document.getElementById('canvasImg').src = dataURL;
+                        //document.getElementById("canvasImg").setAttribute("style", "border:2px solid black; display:inline")
+                        //document.getElementById("myCanvas").setAttribute("style", "display:none")
 
+                        document.getElementById('drawingApp').setAttribute("style", "display:none")
+                        document.getElementById('mapDiv').setAttribute("style", "display:block")
+                        InitMap();
                         
                     }
                 }, 500);
