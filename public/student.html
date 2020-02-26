@@ -10,27 +10,68 @@
         <a-scene>
             <a-assets timeout="3000">
                 <!-- all assets that can be cached by browser -->
-                <a-asset-item crossorigin="anonymous" id="maze" src="/assets/models/maze test.obj">
-                <a-asset-item crossorigin="anonymous" id="mazemtl" src="/assets/textures/maze test.mtl">
+                <a-asset-item crossorigin="anonymous" id="maze" src="/assets/models/newmaze_test1.obj">
+                <a-asset-item crossorigin="anonymous" id="shelf1" src="/assets/models/shelf1_test.obj">
+                <a-asset-item crossorigin="anonymous" id="shelf2" src="/assets/models/newshelf_2.obj">
+                <a-asset-item crossorigin="anonymous" id="shelf3" src="/assets/models/newshelf_3.obj"></a-asset-item>
+                <img id="mazeimg" src="/assets/textures/shelf_lowpoly.jpg">
             </a-assets>
 
-            <a-entity position="0 1.2 5 " camera look-controls wasd-controls>
+            <a-entity position="0 1.2 0 " camera look-controls wasd-controls="fly:true">
                 <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                           raycaster="far:10; interval:100; objects:.clickable"></a-entity>
             </a-entity>
 
-            <a-entity environment="skyType: color;
-                                   skyColor: #c4feff; 
-                                   ground: hills; 
-                                   groundColor: #eddcb9;
-                                   fog: 0.8;
-                                   groundTexture: none"></a-entity>
-
             <a-entity
+                geometry="primitive:box; width:1; depth:1; height: 7"
+                material="color:	#696969"
+                position="8 0 8"></a-entity>
+            <a-entity
+                geometry="primitive:box; width:1; depth:1; height: 7"
+                material="color:	#696969"
+                position="8 0 -8"></a-entity>
+            <a-entity
+                geometry="primitive:box; width:1; depth:1; height: 7"
+                material="color:	#696969"
+                position="-8 0 8"></a-entity>
+            <a-entity
+                geometry="primitive:box; width:1; depth:1; height: 7"
+                material="color:	#696969"
+                position="-8 0 -8"></a-entity>
+            <a-entity
+                geometry="primitive:box; width:1; depth:1; height: 7"
+                material="color:	#696969"
+                position="0 0 8"></a-entity>
+            <a-entity
+                geometry="primitive:box; width:1; depth:1; height: 7"
+                material="color:	#696969"
+                position="0 0 -8"></a-entity>
+            <a-entity
+                geometry="primitive:box; width:1; depth:1; height: 7"
+                material="color:	#696969"
+                position="-8 0 0"></a-entity>
+            <a-entity
+                geometry="primitive:box; width:1; depth:1; height: 7"
+                material="color:	#696969"
+                position="8 0 0"></a-entity>
+
+            
+            <a-entity
+                obj-model="obj:#shelf1"
+                material="src:#mazeimg"
+                scale="0.2 0.2 0.2"
+                position="0 0 0"
+                rotation="0 0 0"></a-entity>
+            
+
+            <!-- <a-entity
                 id='maze'
-                obj-model="obj: #maze; mtl: #mazemtl"
-                scale="1 1 1"></a-entity>
+                obj-model="obj: #maze"
+                material="src: #mazeimg"
+                scale="0.2 0.2 0.2"></a-entity> -->
 
         </a-scene>
     </body>
 </html>
+
+<!-- use just obj and separate material to load image -->
