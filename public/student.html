@@ -12,56 +12,52 @@
                 <!-- all assets that can be cached by browser -->
                 <a-asset-item crossorigin="anonymous" id="maze" src="/assets/models/newmaze_test1.obj">
                 <a-asset-item crossorigin="anonymous" id="shelf1" src="/assets/models/shelf1_test.obj">
-                <a-asset-item crossorigin="anonymous" id="shelf2" src="/assets/models/newshelf_2.obj">
-                <a-asset-item crossorigin="anonymous" id="shelf3" src="/assets/models/newshelf_3.obj"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="shelf2" src="/assets/models/shelf2_test.obj">
+                <a-asset-item crossorigin="anonymous" id="shelf3" src="/assets/models/shelf3_test.obj">
+                <a-asset-item crossorigin="anonymous" id="shelfbooks" src="/assets/models/shelf_books_1.obj">
+                <img id="shelfbooksmtl" src="/assets/textures/shelfbooks.png">
                 <img id="mazeimg" src="/assets/textures/shelf_lowpoly.jpg">
             </a-assets>
 
-            <a-entity position="0 1.2 0 " camera look-controls wasd-controls="fly:true">
+            <!-- MIXINS -->
+            <a-mixin id="columnmix" geometry="primitive:box; width:0.5; depth:0.5; height:7" material="color:#696969"></a-mixin>
+            <a-mixin id="shelf1mix" obj-model="obj:#shelf1" material="src:#mazeimg" scale="0.2 0.2 0.2"></a-mixin>
+            <a-mixin id="shelf2mix" obj-model="obj:#shelf2" material="src:#mazeimg" scale="0.2 0.2 0.2"></a-mixin>
+            <a-mixin id="shelf3mix" obj-model="obj:#shelf3" material="src:#mazeimg" scale="0.2 0.2 0.2"></a-mixin>
+            <a-mixin id="shelfbooksmix" obj-model="obj:#shelfbooks" material="src:#shelfbooksmtl" scale="0.2 0.2 0.2"></a-mixin>
+
+            <!-- CAMERA -->
+            <a-entity position="0 1.5 0 " camera look-controls wasd-controls="fly:false">
                 <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                           raycaster="far:10; interval:100; objects:.clickable"></a-entity>
             </a-entity>
 
-            <a-entity
-                geometry="primitive:box; width:1; depth:1; height: 7"
-                material="color:	#696969"
-                position="8 0 8"></a-entity>
-            <a-entity
-                geometry="primitive:box; width:1; depth:1; height: 7"
-                material="color:	#696969"
-                position="8 0 -8"></a-entity>
-            <a-entity
-                geometry="primitive:box; width:1; depth:1; height: 7"
-                material="color:	#696969"
-                position="-8 0 8"></a-entity>
-            <a-entity
-                geometry="primitive:box; width:1; depth:1; height: 7"
-                material="color:	#696969"
-                position="-8 0 -8"></a-entity>
-            <a-entity
-                geometry="primitive:box; width:1; depth:1; height: 7"
-                material="color:	#696969"
-                position="0 0 8"></a-entity>
-            <a-entity
-                geometry="primitive:box; width:1; depth:1; height: 7"
-                material="color:	#696969"
-                position="0 0 -8"></a-entity>
-            <a-entity
-                geometry="primitive:box; width:1; depth:1; height: 7"
-                material="color:	#696969"
-                position="-8 0 0"></a-entity>
-            <a-entity
-                geometry="primitive:box; width:1; depth:1; height: 7"
-                material="color:	#696969"
-                position="8 0 0"></a-entity>
+            <!-- testing -->-->
+            <a-plane position="0 0 0" rotation="-90 0 0" color="black" width="60" height="60"></a-plane>
+            <a-box position="0 0 0" width="0.01" depth="0.01" height="10" color="red"></a-box>
 
-            
-            <a-entity
-                obj-model="obj:#shelf1"
-                material="src:#mazeimg"
-                scale="0.2 0.2 0.2"
-                position="0 0 0"
-                rotation="0 0 0"></a-entity>
+            <!-- COLUMNS -->
+            <!--<a-entity mixin="columnmix" position="0‬ 0 0"></a-entity>-->
+            <a-entity mixin="columnmix" position="2.3074‬ 0 0"></a-entity>
+            <a-entity mixin="columnmix" position="-2.3074 0 0"></a-entity>
+            <a-entity mixin="columnmix" position="0 0 2.3074"></a-entity>
+            <a-entity mixin="columnmix" position="0 0 -2.3074"></a-entity>
+            <a-entity mixin="columnmix" position="2.3074 0 2.3074"></a-entity>
+            <a-entity mixin="columnmix" position="-2.3074 0 2.3074‬‬"></a-entity>
+            <a-entity mixin="columnmix" position="2.3074 0 -2.3074"></a-entity>
+            <a-entity mixin="columnmix" position="-2.3074 0 -2.3074"></a-entity>
+            <a-entity mixin="columnmix" position="4.6148‬ 0 0"></a-entity>
+
+            <!-- SHELVES -->
+            <!-- <a-entity mixin="shelf1mix" position="1.1537‬ 0 0"           rotation="0 90 0"></a-entity> -->
+            <a-entity mixin="shelf1mix" position="1.1537 0 2.3074"      rotation="0 90 0"></a-entity>
+            <a-entity mixin="shelf1mix" position="1.1537‬ 0 -2.3074"     rotation="0 90 0"></a-entity>
+            <a-entity mixin="shelf1mix" position="-1.1537 0 2.3074"     rotation="0 90 0"></a-entity>
+            <a-entity mixin="shelf1mix" position="-1.1537‬ 0 -2.3074"    rotation="0 90 0"></a-entity>
+            <a-entity mixin="shelf1mix" position="2.3074 0 1.1537‬"      rotation="0 0 0"></a-entity>
+            <a-entity mixin="shelf1mix" position="-2.3074‬ 0 1.1537"     rotation="0 0 0"></a-entity>
+
+            <a-entity mixin="shelfbooksmix" position="0 0 0" rotation="0 0 0"></a-entity>
             
 
             <!-- <a-entity
