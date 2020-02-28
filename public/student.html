@@ -42,9 +42,10 @@
             <a-mixin id="cabinet_v1_mix" obj-model="obj:#cabinet_v1" material="color:#696969" scale="0.2 0.2 0.2"></a-mixin>
 
             <!-- CAMERA -->
-            <a-entity id="playerRig" position="0 1.5 0 " camera look-controls wasd-controls="fly:true">
-                <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
-                          raycaster="far:10; interval:100; objects:.clickable"></a-entity>
+            <a-entity id="playerRig">
+                <a-camera wasd-controls="enabled:false"></a-camera>
+                <a-entity sphere-collider="objects: a-box" super-hands hand-controls="left"></a-entity>
+                <a-entity sphere-collider="objects: a-box" super-hands hand-controls="right"></a-entity>
             </a-entity>
             
 
