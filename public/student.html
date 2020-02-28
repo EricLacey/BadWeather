@@ -7,7 +7,8 @@
     </head>
 
     <body>
-        <a-scene>
+        renderer stuff 
+        <a-scene renderer="antialias: true; logarithmicDepthBuffer: true; colorManagement: true">
             <a-assets timeout="3000">
                 <!-- all assets that can be cached by browser -->
                 <a-asset-item crossorigin="anonymous" id="maze" src="/assets/models/newmaze_test1.obj">
@@ -41,7 +42,7 @@
             <a-mixin id="cabinet_v1_mix" obj-model="obj:#cabinet_v1" material="color:#696969" scale="0.2 0.2 0.2"></a-mixin>
 
             <!-- CAMERA -->
-            <a-entity position="0 1.5 0 " camera look-controls wasd-controls="fly:false">
+            <a-entity position="0 1.5 0 " camera look-controls wasd-controls="fly:true">
                 <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                           raycaster="far:10; interval:100; objects:.clickable"></a-entity>
             </a-entity>
