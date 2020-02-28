@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head></head>
-<body onload="InitSketch(); timer();">
+<head>    
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="assets/js/canvasSketchCode.js"></script>
-    <script type="text/javascript" src="assets/js/mapCode.js"></script>
+    <script type="text/javascript" src="assets/js/mapCode.js"></script></head>
+
+<body onload="InitSketch(); timer();">
+
+    <img id="mapImage" src="assets/textures/mazelayout.png" alt="maze background" style="display:none">
+
     <div id="drawingApp" align="center">
+
         <canvas id="myCanvas" width="300" height="300" style="border:2px solid black"></canvas>
         <img id=canvasImg src="" style="border:2px solid black; display:none">
         <br /><br />
@@ -49,7 +54,7 @@
 
             socket.on("xyToProfessor", function(data){
                 console.log("(" + data.x + ", " + data.y + ")")
-                DrawMap(data.x * 20, data.y * 20)
+                DrawMap(data.x * 9, data.y * 9)
             })
 
             function timer() {
