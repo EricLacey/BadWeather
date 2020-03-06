@@ -27,7 +27,7 @@ app.get('/professorStartScreen', function(req,res) {
 });
 
 app.get('/professorObjectAppears', function(req,res) {
-    res.sendFile(__dirname + '/public/professorObjectAppears.html');
+    res.sendFile(__dirname + 'public/professorObjectAppears.html');
 });
 
 //websocket stuff
