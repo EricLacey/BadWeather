@@ -21,8 +21,13 @@ app.get('/professor', function(req,res) {
     res.sendFile(__dirname + '/public/professor.html');
 });
 
-app.get('/test', function(req,res) {
-    res.sendFile(__dirname + '/public/test.html');
+// UI TEST PAGE ROUTES
+app.get('/professorStartScreen', function(req,res) {
+    res.sendFile(__dirname + '/public/professorStartScreen.html');
+});
+
+app.get('/professorObjectAppears', function(req,res) {
+    res.sendFile(__dirname + '/public/professorObjectAppears.html');
 });
 
 //websocket stuff
