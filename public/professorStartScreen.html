@@ -1,60 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Start Screen test</title>
- <!-- loading socket -->
-<script src="/socket.io/socket.io.js"></script>
-<meta charset = "UTF-8"/>
-<style>
+    <title>Start Screen test</title>
+    <!-- loading socket -->
+    <script src="/socket.io/socket.io.js"></script>
+    <meta charset = "UTF-8"/>
+    <!-- CSS style -->
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
 
-  @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
-
-    body{
-        background-color: #D1C89D;
-        text-align: center;
-        margin-top: 5%;
-    }   
-    img{
-        width: 80%;
-        height: auto;
-    } 
-    #title{
-        padding: 20px 20px;
-    }
-    button{
-        background-color:black;
-        opacity: 0.5;
-        border: none;
-        color: #D1C89D;
-        text-align: center;
-        text-decoration: none;
-        width: 60%;
-        height: 80px;
-        font-size: 50px;
-        font-family: 'PT Sans', sans-serif;
-        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.472), 0 17px 50px 0 rgba(0,0,0,0.19);
-        /* to determine speed of the "hover" effect. */
-        transition-duration: 0.4s;
-    }
-    button:hover {
-        opacity: 1
-    }
-    .responsive-width {
-        font-size: 3vw;
-    }
-    #logo{
-        padding: 40px 15px;
-    }
-</style>
+        body{
+            background-color: #D1C89D;
+            text-align: center;
+            margin-top: 5%;
+        }   
+        img{
+            width: 80%;
+            height: auto;
+        } 
+        #title{
+            padding: 20px 20px;
+        }
+        button{
+            background-color:black;
+            opacity: 0.5;
+            border: none;
+            color: #D1C89D;
+            text-align: center;
+            text-decoration: none;
+            width: 60%;
+            height: 80px;
+            font-size: 50px;
+            font-family: 'PT Sans', sans-serif;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.472), 0 17px 50px 0 rgba(0,0,0,0.19);
+            /* to determine speed of the "hover" effect. */
+            transition-duration: 0.4s;
+        }
+        button:hover {
+            opacity: 1
+        }
+        .responsive-width {
+            font-size: 3vw;
+        }
+        #logo{
+            padding: 40px 15px;
+        }
+    </style>
 </head>
 <body>
+    <!-- title -->
     <div id="title">
         <img src="assets/images/title.png" alt="Artificium Venari"/> 
     </div> 
+
+    <!-- button -->
     <button onclick="location.href='/professorObjectAppears'" type="button" class="btn btn-default btn-lg btn-block responsive-width">
     TO START 
     </button>
 
+    <!-- logo -->
     <div id="logo">
         <img src="assets/images/logo.png" alt="Game by Sun Dog Studios"/>
     </div>

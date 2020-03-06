@@ -21,7 +21,7 @@ app.get('/professor', function(req,res) {
     res.sendFile(__dirname + '/public/professor.html');
 });
 
-// UI TEST PAGE ROUTES
+// UI TEST PAGES ROUTES
 app.get('/professorStartScreen', function(req,res) {
     res.sendFile(__dirname + '/public/professorStartScreen.html');
 });
