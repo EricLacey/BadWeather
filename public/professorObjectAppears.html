@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Object Appears test</title>
+    <!-- loading socket -->
+    <script src="/socket.io/socket.io.js"></script>
     <meta charset = "UTF-8"/>
     <style>
          @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
@@ -10,6 +12,16 @@
     </style>
 </head>
 <body>
-    
+    <h> hello </h>
+     <!-- SOCKET SCRIPT -->
+     <script>
+        let socket = io();
+
+        //socket events
+        socket.on('connect', function(){
+           console.log('p1 connected');
+        });
+    </script>
+    </body>
 </body>
 </html>

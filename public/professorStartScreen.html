@@ -2,6 +2,8 @@
 <html>
 <head>
 <title>Start Screen test</title>
+ <!-- loading socket -->
+<script src="/socket.io/socket.io.js"></script>
 <meta charset = "UTF-8"/>
 <style>
 
@@ -45,18 +47,26 @@
     }
 </style>
 </head>
-`
+<body>
+    <div id="title">
+        <img src="assets/images/title.png" alt="Artificium Venari"/> 
+    </div> 
+    <button onclick="location.href='/professorObjectAppears'" type="button" class="btn btn-default btn-lg btn-block responsive-width">
+    TO START 
+    </button>
 
-<div id="title">
-    <img src="assets/images/title.png" alt="Artificium Venari"/> 
-</div> 
-<button onclick="location.href='/professorObjectAppears'" type="button" class="btn btn-default btn-lg btn-block responsive-width">
-TO START 
-</button>
+    <div id="logo">
+        <img src="assets/images/logo.png" alt="Game by Sun Dog Studios"/>
+    </div>
 
-<div id="logo">
-    <img src="assets/images/logo.png" alt="Game by Sun Dog Studios"/>
-</div>
-</body>
+     <!-- SOCKET SCRIPT -->
+     <script>
+        let socket = io();
 
+        //socket events
+        socket.on('connect', function(){
+           console.log('p1 connected');
+        });
+    </script>
+    </body>
 </html>
