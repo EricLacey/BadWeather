@@ -39,6 +39,9 @@
                 <a-asset-item crossorigin="anonymous" id="shelf_v8" src="assets/models/shelves_v8/shelf_v8.gltf"></a-asset-item>
                 <a-asset-item crossorigin="anonymous" id="shelf_v8_corner" src="assets/models/shelves_v8/shelf_v8_corner.gltf"></a-asset-item>
 
+                <img id="shelf_v8_img" src="/assets/textures/shelves_v8/phong29SG_2D_View.png">
+                <a-asset-item crossorigin="anonymous" id="shelf_v8_obj" src="assets/models/shelves_v8/shelf_v8.obj"></a-asset-item>
+
             </a-assets>
 
             <!-- MIXINS -->
@@ -49,7 +52,8 @@
             <a-mixin id="shelfbooksmix" obj-model="obj:#shelfbooks" material="src:#shelfbooksmtl" scale="0.2 0.2 0.2"></a-mixin>
 
             <!-- <a-mixin id="shelf_v6_mix" obj-model="obj:#shelf_v6_dressed" material="src:#shelf_v6_dressed_img" scale="0.2 0.2 0.2"></a-mixin> -->
-            <a-mixin id="shelf_v6_mix" gltf-model="#shelf_v8" scale="0.2 0.2 0.2"></a-mixin>
+            <a-mixin id="shelf_v6_mix" obj-model="obj:#shelf_v8_obj" material="src:#shelf_v8_img" scale="0.2 0.2 0.2"></a-mixin>
+            <!-- <a-mixin id="shelf_v6_mix" gltf-model="#shelf_v8" scale="0.2 0.2 0.2"></a-mixin> -->
             <!-- <a-mixin id="shelf_v6_mix" gltf-model="#shelf_v6_painted" scale="0.2 0.2 0.2"></a-mixin> -->
             <!-- <a-mixin id="shelf_v6_corner_mix" obj-model="obj:#shelf_v6_corner_dressed" material="src:#shelf_v6_corner_dressed_img" scale="0.2 0.2 0.2"></a-mixin> -->
             <a-mixin id="shelf_v6_corner_mix" gltf-model="#shelf_v8_corner" scale="0.2 0.2 0.2"></a-mixin>
