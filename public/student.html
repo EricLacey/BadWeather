@@ -36,6 +36,9 @@
                 <a-asset-item crossorigin="anonymous" id="isis-jar-gltf" src="assets/models/canopic_isis/canopicjar_isis_texture.gltf"></a-asset-item>
                 <a-asset-item crossorigin="anonymous" id="isis-jar-glb" src="assets/models/canopic_isis/canopicjar_isis_texture.glb"></a-asset-item>
 
+                <a-asset-item crossorigin="anonymous" id="shelf_v8" src="assets/models/shelves_v8/shelf_v8.gltf"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="shelf_v8_corner" src="assets/models/shelves_v8/shelf_v8_corner.gltf"></a-asset-item>
+
             </a-assets>
 
             <!-- MIXINS -->
@@ -45,9 +48,11 @@
             <a-mixin id="shelf3mix" obj-model="obj:#shelf3" material="src:#mazeimg" scale="0.2 0.2 0.2"></a-mixin>
             <a-mixin id="shelfbooksmix" obj-model="obj:#shelfbooks" material="src:#shelfbooksmtl" scale="0.2 0.2 0.2"></a-mixin>
 
-            <a-mixin id="shelf_v6_mix" obj-model="obj:#shelf_v6_dressed" material="src:#shelf_v6_dressed_img" scale="0.2 0.2 0.2"></a-mixin>
+            <!-- <a-mixin id="shelf_v6_mix" obj-model="obj:#shelf_v6_dressed" material="src:#shelf_v6_dressed_img" scale="0.2 0.2 0.2"></a-mixin> -->
+            <a-mixin id="shelf_v6_mix" gltf-model="#shelf_v8" scale="0.2 0.2 0.2"></a-mixin>
             <!-- <a-mixin id="shelf_v6_mix" gltf-model="#shelf_v6_painted" scale="0.2 0.2 0.2"></a-mixin> -->
-            <a-mixin id="shelf_v6_corner_mix" obj-model="obj:#shelf_v6_corner_dressed" material="src:#shelf_v6_corner_dressed_img" scale="0.2 0.2 0.2"></a-mixin>
+            <!-- <a-mixin id="shelf_v6_corner_mix" obj-model="obj:#shelf_v6_corner_dressed" material="src:#shelf_v6_corner_dressed_img" scale="0.2 0.2 0.2"></a-mixin> -->
+            <a-mixin id="shelf_v6_corner_mix" gltf-model="#shelf_v8_corner" scale="0.2 0.2 0.2"></a-mixin>
             <a-mixin id="cabinet_v1_mix" obj-model="obj:#cabinet_v1" material="color:#696969" scale="0.2 0.2 0.2"></a-mixin>
 
             <!-- CAMERA -->
