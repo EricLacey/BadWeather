@@ -34,6 +34,18 @@
             /* to determine speed of the "hover" effect. */
             transition-duration: 0.4s;
         }
+        #btnC:hover{
+            background-color: #3c89d0;
+            color: #082284;
+            opacity: 1;
+            box-shadow: none;
+        }
+        #btnH:hover{
+            background-color: #ff3333;
+            color: #990000;
+            opacity: 1;
+            box-shadow: none;
+        }
 
     </style>
 </head>
@@ -46,12 +58,12 @@
     </div>
 
     <!-- btn COLD -->
-    <button onclick="location.href='/'" type="button" class="btn btn-default btn-lg btn-block responsive-width">
+    <button onclick="location.href='/'" id="btnC" type="button" class="btn btn-default btn-lg btn-block responsive-width">
         COLD
     </button>
 
      <!-- btn HOT -->
-     <button onclick="location.href='/'" type="button" class="btn btn-default btn-lg btn-block responsive-width">
+     <button onclick="location.href='/'" id="btnH" type="button" class="btn btn-default btn-lg btn-block responsive-width">
         HOT
     </button>
 
