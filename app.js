@@ -30,6 +30,10 @@ app.get('/professorObjectAppears', function(req,res) {
     res.sendFile(__dirname + '/public/professorObjectAppears.html');
 });
 
+app.get('/professorMapAndButtons', function(req,res) {
+    res.sendFile(__dirname + '/public/professorMapAndButtons.html');
+});
+
 //websocket stuff
 socketIO.on('connection', function(socket) {
     console.log(socket.id + ' has connected!');

@@ -55,57 +55,56 @@
         </select>
         <div id="timer">test timer</div>
         
+        <br>     <!-- test link to the next page -->
+        <a href="/professorMapAndButtons">To map and buttons</a>
     </div>
 
-        <script src="/socket.io/socket.io.js"></script>
-        <script>
-            let socket = io();
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io();
 
-            //default connect event
-            socket.on('connect', function() {
-                console.log("connected!");
-            });
+        //default connect event
+        socket.on('connect', function() {
+            console.log("connected!");
+        });
 
-            function timer() {
-                // Set the date we're counting down to
-                let secs = 5;
-                let now = new Date().getTime();
-                let endTime = new Date().setTime(now + (secs * 1000))
+        function timer() {
+            // Set the date we're counting down to
+            let secs = 5;
+            let now = new Date().getTime();
+            let endTime = new Date().setTime(now + (secs * 1000))
 
-                // Update the count down every 1 second
-                var x = setInterval(function() {
+            // Update the count down every 1 second
+            var x = setInterval(function() {
 
-                    // Get today's date and time
-                    now = new Date().getTime();
+            // Get today's date and time
+            now = new Date().getTime();
 
-                    // Find the distance between now and the count down date
-                    var distance = endTime - now;
+            // Find the distance between now and the count down date
+            var distance = endTime - now;
 
-                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                    // Display the result in the element with id="demo"
-                    document.getElementById("timer").innerHTML = seconds + "s ";
+            // Display the result in the element with id="demo"
+            document.getElementById("timer").innerHTML = seconds + "s ";
 
-                    // If the count down is finished, write some text
-                    if (distance < 0) {
-                        clearInterval(x);
-                        document.getElementById("timer").innerHTML = "Done!";
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "Done!";
                         
-                        // save canvas image as data url (png format by default)
-                        var canvas = document.getElementById('myCanvas')
-                        var dataURL = canvas.toDataURL();
+                // save canvas image as data url (png format by default)
+                var canvas = document.getElementById('myCanvas')
+                var dataURL = canvas.toDataURL();
 
-                        socket.emit("ImageToSocket", dataURL)
+                socket.emit("ImageToSocket", dataURL)
 
-                        document.getElementById('canvasImg').src = dataURL;
-                        document.getElementById("canvasImg").setAttribute("style", "border:2px solid black; display:inline")
-                        document.getElementById("myCanvas").setAttribute("style", "border:2px solid black; display:none")
-
-                        
-                    }
-                }, 500);
+                document.getElementById('canvasImg').src = dataURL;
+                document.getElementById("canvasImg").setAttribute("style", "border:2px solid black; display:inline")
+                document.getElementById("myCanvas").setAttribute("style", "border:2px solid black; display:none")   
             }
-        </script>
-
+        }, 500);
+    }
+    </script>
 </body>
 </html>
