@@ -24,14 +24,14 @@
 
     </style>
 </head>
-<body onload="InitThis(); timer();">
+<body onload="timer();">
 
     <!-- instructions -->
     <div id="instructions">
-        You have 5 seconds to remember this artifact.    
+        Try to remember this artifact! Time left: <p id="demo"></p>    
     </div>
 
-    <p id="demo"></p>
+    
 
     <!-- image of an artifact on paper here -->
     <img src="assets/images/paper01.png" alt="Image of an artifact here"/>
@@ -41,7 +41,7 @@
     <!-- test link to the next page -->
     <a href="/professorCanvas">To canvas</a>
    
-    <script>
+    <script type="text/javascript">
         //socket
         let socket = io();
 
@@ -53,7 +53,7 @@
         //Timer 
         function timer() {
             // Set the date we're counting down to
-            let secs = 5;
+            let secs = 9;
             let now = new Date().getTime();
             let endTime = new Date().setTime(now + (secs * 1000))
 
