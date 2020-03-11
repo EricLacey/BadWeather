@@ -17,8 +17,8 @@ app.get('/student', function(req,res) {
     res.sendFile(__dirname + '/public/student.html');
 });
 
-app.get('/professor', function(req,res) {
-    res.sendFile(__dirname + '/public/professor.html');
+app.get('/professorCanvas', function(req,res) {
+    res.sendFile(__dirname + '/public/professorCanvas.html');
 });
 
 app.get('/professorObjectAppears', function(req,res) {

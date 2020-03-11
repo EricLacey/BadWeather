@@ -5,11 +5,56 @@
     <script src="/socket.io/socket.io.js"></script>
     <meta charset = "UTF-8"/>
     <style>
-        
+        @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
+
+        body{
+            background-color: #D1C89D;
+            font-family: 'PT Sans', sans-serif;
+            text-align: center;
+            }
+        #map{
+            
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+        button{
+            background-color:black;
+            opacity: 0.5;
+            border: none;
+            color: #D1C89D;
+            text-align: center;
+            text-decoration: none;
+            width: 320px;
+            height: 80px;
+            font-size: 50px;
+            font-family: 'PT Sans', sans-serif;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.472), 0 17px 50px 0 rgba(0,0,0,0.19);
+            /* to determine speed of the "hover" effect. */
+            transition-duration: 0.4s;
+        }
+
     </style>
 </head>
-<body>
-    <p>Hello</p>
+<body >
+    <p> </p>
+
+     <!-- map -->
+     <div id="map">
+        <img src="assets/images/map.png" alt="Top down map of the 2nd player environment"/>
+    </div>
+
+    <!-- btn COLD -->
+    <button onclick="location.href='/'" type="button" class="btn btn-default btn-lg btn-block responsive-width">
+        COLD
+    </button>
+
+     <!-- btn HOT -->
+     <button onclick="location.href='/'" type="button" class="btn btn-default btn-lg btn-block responsive-width">
+        HOT
+    </button>
+
 
     <!-- SOCKET SCRIPT -->
     <script>
