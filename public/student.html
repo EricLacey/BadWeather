@@ -8,30 +8,14 @@
 
     <body>
         <!-- renderer stuff  -->
-        <a-scene renderer="antialias: true; logarithmicDepthBuffer: true; colorManagement: true">
+        <a-scene stats renderer="antialias: true; logarithmicDepthBuffer: true; colorManagement: true">
             <a-assets timeout="3000">
                 <!-- all assets that can be cached by browser -->
-                <a-asset-item crossorigin="anonymous" id="shelf1" src="/assets/models/shelf1_test.obj">
-                <a-asset-item crossorigin="anonymous" id="shelf2" src="/assets/models/shelf2_test.obj">
-                <a-asset-item crossorigin="anonymous" id="shelf3" src="/assets/models/shelf3_test.obj">
-                <a-asset-item crossorigin="anonymous" id="shelfbooks" src="/assets/models/shelf_books_1.obj">
-                <img id="shelfbooksmtl" src="/assets/textures/shelfbooks.png">
-                <img id="mazeimg" src="/assets/textures/shelf_lowpoly.jpg">
+                <a-asset-item crossorigin="anonymous" id="cabinet_v1" src="/assets/models/cabinets/cabinet_v1.obj"></a-asset-item>
 
-                <a-asset-item crossorigin="anonymous" id="shelf_v6" src="/assets/models/shelf_v6.obj">
-                <a-asset-item crossorigin="anonymous" id="shelf_v6_corner" src="/assets/models/shelf_v6_corner.obj">
-                <img id="shelf_v6_img" src="/assets/textures/shelf_v6.png">
-                <a-asset-item crossorigin="anonymous" id="cabinet_v1" src="/assets/models/cabinet_v1.obj"></a-asset-item>
-
-                <a-asset-item crossorigin="anonymous" id="shelf_v6_dressed" src="/assets/models/shelf_v6_dressed.obj"></a-asset-item>
-                <a-asset-item crossorigin="anonymous" id="shelf_v6_corner_dressed" src="/assets/models/shelf_v6_corner_dressed.obj"></a-asset-item>
-                <img id="shelf_v6_dressed_img" src="/assets/textures/shelf_v6_dressed.png">
-                <img id="shelf_v6_corner_dressed_img" src="/assets/textures/shelf_v6_corner_dressed.png">
-                <a-asset-item id="shelf_v6_painted" src="/assets/models/shelf_v6_painted.gltf"></a-asset-item>
-
-                <a-asset-item crossorigin="anonymous" id="anubis-jar" src="/assets/models/canopicJar_Anubis.obj"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="anubis-jar" src="/assets/models/canopic_anubis/canopicJar_Anubis.obj"></a-asset-item>
                 <img id="anubis-jar-img" src="/assets/textures/canopicJar_Anubis_UVmap_textured.png">
-                <a-asset-item crossorigin="anonymous" id="anubis-jar-gltf" src="assets/models/canopicjar_anubis_GLTF.gltf"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="anubis-jar-gltf" src="assets/models/canopic_anubis/canopicjar_anubis_GLTF.gltf"></a-asset-item>
 
                 <a-asset-item crossorigin="anonymous" id="isis-jar-gltf" src="assets/models/canopic_isis/canopicjar_isis_texture.gltf"></a-asset-item>
                 <a-asset-item crossorigin="anonymous" id="isis-jar-glb" src="assets/models/canopic_isis/canopicjar_isis_texture.glb"></a-asset-item>
@@ -39,24 +23,25 @@
                 <a-asset-item crossorigin="anonymous" id="shelf_v8" src="assets/models/shelves_v8/shelf_v8.gltf"></a-asset-item>
                 <a-asset-item crossorigin="anonymous" id="shelf_v8_corner" src="assets/models/shelves_v8/shelf_v8_corner.gltf"></a-asset-item>
 
-                <img id="shelf_v8_img" src="/assets/textures/shelves_v8/phong29SG_2D_View.png">
+                <img id="shelf_v8_img" src="/assets/models/shelves_v8/phong29SG_2D_View.png">
+                <img id="shelf_v8_corner_img" src="/assets/models/shelves_v8/phong30SG_2D_View.png">
                 <a-asset-item crossorigin="anonymous" id="shelf_v8_obj" src="assets/models/shelves_v8/shelf_v8.obj"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="shelf_v8_corner_obj" src="assets/models/shelves_v8/shelf_v8_corner.obj"></a-asset-item>
 
             </a-assets>
 
             <!-- MIXINS -->
-            <a-mixin id="columnmix" geometry="primitive:box; width:0.5; depth:0.5; height:7" material="color:#696969"></a-mixin>
             <a-mixin id="shelf1mix" obj-model="obj:#shelf1" material="src:#mazeimg" scale="0.2 0.2 0.2"></a-mixin>
             <a-mixin id="shelf2mix" obj-model="obj:#shelf2" material="src:#mazeimg" scale="0.2 0.2 0.2"></a-mixin>
             <a-mixin id="shelf3mix" obj-model="obj:#shelf3" material="src:#mazeimg" scale="0.2 0.2 0.2"></a-mixin>
-            <a-mixin id="shelfbooksmix" obj-model="obj:#shelfbooks" material="src:#shelfbooksmtl" scale="0.2 0.2 0.2"></a-mixin>
 
             <!-- <a-mixin id="shelf_v6_mix" obj-model="obj:#shelf_v6_dressed" material="src:#shelf_v6_dressed_img" scale="0.2 0.2 0.2"></a-mixin> -->
             <a-mixin id="shelf_v6_mix" obj-model="obj:#shelf_v8_obj" material="src:#shelf_v8_img" scale="0.2 0.2 0.2"></a-mixin>
             <!-- <a-mixin id="shelf_v6_mix" gltf-model="#shelf_v8" scale="0.2 0.2 0.2"></a-mixin> -->
             <!-- <a-mixin id="shelf_v6_mix" gltf-model="#shelf_v6_painted" scale="0.2 0.2 0.2"></a-mixin> -->
             <!-- <a-mixin id="shelf_v6_corner_mix" obj-model="obj:#shelf_v6_corner_dressed" material="src:#shelf_v6_corner_dressed_img" scale="0.2 0.2 0.2"></a-mixin> -->
-            <a-mixin id="shelf_v6_corner_mix" gltf-model="#shelf_v8_corner" scale="0.2 0.2 0.2"></a-mixin>
+            <!-- <a-mixin id="shelf_v6_corner_mix" gltf-model="#shelf_v8_corner" scale="0.2 0.2 0.2"></a-mixin> -->
+            <a-mixin id="shelf_v6_corner_mix" obj-model="obj:#shelf_v8_corner_obj" material="src:#shelf_v8_corner_img" scale="0.2 0.2 0.2"></a-mixin>
             <a-mixin id="cabinet_v1_mix" obj-model="obj:#cabinet_v1" material="color:#696969" scale="0.2 0.2 0.2"></a-mixin>
 
             <!-- CAMERA -->
