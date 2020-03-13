@@ -1,0 +1,180 @@
+{
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 1236,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 350,
+      "max": [
+        0.538116753101349,
+        1.0,
+        0.507020711898804
+      ],
+      "min": [
+        -0.538116753101349,
+        -1.0,
+        -0.507020711898804
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 350,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 350,
+      "type": "VEC2"
+    }
+  ],
+  "asset": {
+    "generator": "Substance Painter 2019.3.2",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 4944,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 4200,
+      "byteOffset": 4944,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 4200,
+      "byteOffset": 9144,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 2800,
+      "byteOffset": 13344,
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 16144,
+      "uri": "moai2_texture.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "phong2SG_baseColor.png"
+    },
+    {
+      "uri": "phong2SG_occlusionRoughnessMetallic.png"
+    },
+    {
+      "uri": "phong2SG_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "alphaMode": "OPAQUE",
+      "name": "phong2SG",
+      "normalTexture": {
+        "index": 2
+      },
+      "occlusionTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "moai2 MOAI",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 2,
+            "POSITION": 1,
+            "TEXCOORD_0": 3
+          },
+          "indices": 0,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "moai_variation2.obj",
+      "scale": [
+        2.92405438423157,
+        2.92405438423157,
+        2.92405438423157
+      ],
+      "translation": [
+        -1.43051147460938e-06,
+        2.93323445320129,
+        -0.0457779169082642
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "g moai2 MOAI"
+    },
+    {
+      "mesh": 0,
+      "name": "moai2 MOAI"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9985,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    }
+  ]
+}
