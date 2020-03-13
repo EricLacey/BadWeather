@@ -4,7 +4,7 @@
         <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
         <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
-
+        <script src="assets/js/horus-component.js"></script> <!-- For object pickup -->
     </head>
 
     <body>
@@ -74,6 +74,9 @@
             <a-entity position="0 1.7 0 " camera look-controls="pointerLockEnabled:false" wasd-controls="fly:false; acceleration:150"> 
                 <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                           raycaster="far:10; interval:100; objects:.clickable"></a-entity>
+            
+                <!----------- object that was clicked, parented to camera ------------>
+                <a-entity id="grabbedObj" position="-2.25 -1.25 -1.5" visible="true"></a-entity>
             </a-entity>
             
 
@@ -375,13 +378,25 @@
                     <a-entity obj-model="obj:#normhat" material="src:#normimg" scale="0.6 0.6 0.6" position="0 6.4 5.5"  rotation="0 90 0"></a-entity>
                 </a-entity>
 
-                <a-entity id="dropzone" obj-model="obj:#cabinet_small" material="src:#cabinet_small_img" scale="0.2 0.2 0.2" position="0 0 -2" rotation="0 90 0"></a-entity>
-            </a-entity>
+                <!-- TEST: DROP OFF ZONE -->
+                <a-entity   id="dropzone"
+                            obj-model="obj:#cabinet_small"
+                            material="src:#cabinet_small_img"
+                            scale="0.2 0.2 0.2"
+                            position="0 0 -2"
+                            rotation="0 90 0"
+                            obj-put-down=""></a-entity>
+                </a-entity>
 
             <!-- OBJECTS -->
-            
-
-            
+            <!-- TEST: PICK UP THIS OBJECT -->
+            <a-entity   obj-model="obj:#horus"
+                        material="src:#horusimg"
+                        scale="0.15 0.15 0.15"
+                        id="pickUpObj"
+                        class="clickable"
+                        obj-pick-up="">
+            </a-entity>
         </a-scene>
 
 
