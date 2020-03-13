@@ -3,365 +3,385 @@
     <head>
         <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+        <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
 
     </head>
 
     <body>
-        renderer stuff 
-        <a-scene renderer="antialias: true; logarithmicDepthBuffer: true; colorManagement: true">
+        <!-- renderer stuff  -->
+        <a-scene renderer="antialias: true; logarithmicDepthBuffer: true; colorManagement: true" inspector-plugin-recast> <!-- stats -->
             <a-assets timeout="3000">
-                <!-- all assets that can be cached by browser -->
-                <a-asset-item crossorigin="anonymous" id="maze" src="/assets/models/newmaze_test1.obj">
-                <a-asset-item crossorigin="anonymous" id="shelf1" src="/assets/models/shelf1_test.obj">
-                <a-asset-item crossorigin="anonymous" id="shelf2" src="/assets/models/shelf2_test.obj">
-                <a-asset-item crossorigin="anonymous" id="shelf3" src="/assets/models/shelf3_test.obj">
-                <a-asset-item crossorigin="anonymous" id="shelfbooks" src="/assets/models/shelf_books_1.obj">
-                <img id="shelfbooksmtl" src="/assets/textures/shelfbooks.png">
-                <img id="mazeimg" src="/assets/textures/shelf_lowpoly.jpg">
+                <!-- SHELVES -->
+                <a-asset-item crossorigin="anonymous" id="shelf_v8" src="assets/models/shelves_v8/shelf_v8.gltf"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="shelf_v8_corner" src="assets/models/shelves_v8/shelf_v8_corner.gltf"></a-asset-item>
+                <img id="shelf_v8_img" src="/assets/models/shelves_v8/phong29SG_2D_View.png">
+                <img id="shelf_v8_corner_img" src="/assets/models/shelves_v8/phong30SG_2D_View.png">
+                <a-asset-item crossorigin="anonymous" id="shelf_v8_obj" src="assets/models/shelves_v8/shelf_v8.obj"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="shelf_v8_corner_obj" src="assets/models/shelves_v8/shelf_v8_corner.obj"></a-asset-item>
 
-                <a-asset-item crossorigin="anonymous" id="shelf_v6" src="/assets/models/shelf_v6.obj">
-                <a-asset-item crossorigin="anonymous" id="shelf_v6_corner" src="/assets/models/shelf_v6_corner.obj">
-                <img id="shelf_v6_img" src="/assets/textures/shelf_v6.png">
-                <a-asset-item crossorigin="anonymous" id="cabinet_v1" src="/assets/models/cabinet_v1.obj"></a-asset-item>
+                <!-- ROOM -->
+                <a-asset-item crossorigin="anonymous" id="wc_gltf" src="assets/models/shelves_v8/wc.gltf"></a-asset-item>
+                <img id="floorimg" src="/assets/models/floor_concrete.png">
+                <a-asset-item crossorigin="anonymous" id="floor" src="assets/models/floor.obj"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="navmesh" src="assets/models/navmesh2.obj"></a-asset-item>
 
-                <a-asset-item crossorigin="anonymous" id="shelf_v6_dressed" src="/assets/models/shelf_v6_dressed.obj"></a-asset-item>
-                <a-asset-item crossorigin="anonymous" id="shelf_v6_corner_dressed" src="/assets/models/shelf_v6_corner_dressed.obj"></a-asset-item>
-                <img id="shelf_v6_dressed_img" src="/assets/textures/shelf_v6_dressed.png">
-                <img id="shelf_v6_corner_dressed_img" src="/assets/textures/shelf_v6_corner_dressed.png">
+                <!-- CABINETS -->
+                <a-asset-item crossorigin="anonymous" id="cabinet_small" src="/assets/models/cabinets/cabinet_small.obj"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="cabinet_v2" src="/assets/models/cabinets/cabinet_v2.obj"></a-asset-item>
+                <img id="cabinet_img" src="/assets/models/cabinets/cabinet_v2.png">
+                <img id="cabinet_small_img" src="/assets/models/cabinets/cabinet_small.png">
+
+                <!-- OBJECTS -->
+                <a-asset-item crossorigin="anonymous" id="anubis" src="assets/models/canopic/anubis/anubis.obj"></a-asset-item>
+                <img id="anubisimg" src="/assets/models/canopic/anubis/anubis_2D.png">
+                <a-asset-item crossorigin="anonymous" id="horus" src="assets/models/canopic/horus/horus.obj"></a-asset-item>
+                <img id="horusimg" src="/assets/models/canopic/horus/horus_2D.png">
+                <a-asset-item crossorigin="anonymous" id="isis" src="assets/models/canopic/isis/isis.obj"></a-asset-item>
+                <img id="isisimg" src="/assets/models/canopic/isis/isis_2D.png">
+                <!-- <a-asset-item crossorigin="anonymous" id="anubis-jar-gltf" src="assets/models/canopic/anubis/canopicjar_anubis_texture.gltf"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="isis-jar-gltf" src="assets/models/canopic/isis/canopicjar_isis_texture.gltf"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="horus-jar-gltf" src="assets/models/canopic/horus/canopicjar_horus_texture_mar12.gltf"></a-asset-item> -->
+
+                <a-asset-item crossorigin="anonymous" id="whalehat" src="assets/models/hats/whale/whalehat.obj"></a-asset-item>
+                <img id="whaleimg" src="/assets/models/hats/whale/whale_2D.png">
+                <a-asset-item crossorigin="anonymous" id="turtlehat" src="assets/models/hats/turtle/turtlehat.obj"></a-asset-item>
+                <img id="turtleimg" src="/assets/models/hats/turtle/turtle_2D.png">
+                <a-asset-item crossorigin="anonymous" id="normhat" src="assets/models/hats/norm/normhat.obj"></a-asset-item>
+                <img id="normimg" src="/assets/models/hats/norm/norm_2D.png">
+                <!-- <a-asset-item crossorigin="anonymous" id="whalehat" src="assets/models/hats/whale/patternedHat_whaleTexture.gltf"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="turtlehat" src="assets/models/hats/turtle/patternedHat_turtleTexture.gltf"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="normhat" src="assets/models/hats/norm/patternedHat_normalTexture.gltf"></a-asset-item> -->
+
+                <a-asset-item crossorigin="anonymous" id="moai1" src="assets/models/moai/1/moai1.obj"></a-asset-item>
+                <img id="moai1img" src="/assets/models/moai/1/moai1_2D.png">
+                <a-asset-item crossorigin="anonymous" id="moai2" src="assets/models/moai/2/moai2.obj"></a-asset-item>
+                <img id="moai2img" src="/assets/models/moai/2/moai2_2D.png">
+                <a-asset-item crossorigin="anonymous" id="moai3" src="assets/models/moai/3/moai3.obj"></a-asset-item>
+                <img id="moai3img" src="/assets/models/moai/3/moai3_2D.png">
+                <!-- <a-asset-item crossorigin="anonymous" id="moai1" src="assets/models/moai/1/moai1_texture.gltf"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="moai2" src="assets/models/moai/2/moai2_texture.gltf"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="moai3" src="assets/models/moai/3/moai3_texture.gltf"></a-asset-item> -->
+
             </a-assets>
 
             <!-- MIXINS -->
-            <a-mixin id="columnmix" geometry="primitive:box; width:0.5; depth:0.5; height:7" material="color:#696969"></a-mixin>
-            <a-mixin id="shelf1mix" obj-model="obj:#shelf1" material="src:#mazeimg" scale="0.2 0.2 0.2"></a-mixin>
-            <a-mixin id="shelf2mix" obj-model="obj:#shelf2" material="src:#mazeimg" scale="0.2 0.2 0.2"></a-mixin>
-            <a-mixin id="shelf3mix" obj-model="obj:#shelf3" material="src:#mazeimg" scale="0.2 0.2 0.2"></a-mixin>
-            <a-mixin id="shelfbooksmix" obj-model="obj:#shelfbooks" material="src:#shelfbooksmtl" scale="0.2 0.2 0.2"></a-mixin>
-
-            <a-mixin id="shelf_v6_mix" obj-model="obj:#shelf_v6_dressed" material="src:#shelf_v6_dressed_img" scale="0.2 0.2 0.2"></a-mixin>
-            <a-mixin id="shelf_v6_corner_mix" obj-model="obj:#shelf_v6_corner_dressed" material="src:#shelf_v6_corner_dressed_img" scale="0.2 0.2 0.2"></a-mixin>
-            <a-mixin id="cabinet_v1_mix" obj-model="obj:#cabinet_v1" material="color:#696969" scale="0.2 0.2 0.2"></a-mixin>
+            <a-mixin id="shelf_v8_mix" obj-model="obj:#shelf_v8_obj" material="src:#shelf_v8_img" scale="0.2 0.2 0.2"></a-mixin>
+            <a-mixin id="shelf_v8_corner_mix" obj-model="obj:#shelf_v8_corner_obj" material="src:#shelf_v8_corner_img" scale="0.2 0.2 0.2"></a-mixin>
+            <a-mixin id="cabinet_v2_mix" obj-model="obj:#cabinet_v2" material="src:#cabinet_img" scale="0.2 0.2 0.2"></a-mixin>
 
             <!-- CAMERA -->
-            <a-entity position="0 1.5 0 " camera look-controls wasd-controls="fly:true">
+            <a-entity id="rig" movement-controls="constrainToNavMesh:true" nav-agent></a-entity>
+            <a-entity position="0 1.7 0 " camera look-controls="pointerLockEnabled:false" wasd-controls="fly:false; acceleration:150"> 
                 <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                           raycaster="far:10; interval:100; objects:.clickable"></a-entity>
             </a-entity>
             
 
-            <!-- testing -->-->
-            <a-plane position="0 0 0" rotation="-90 0 0" color="black" width="60" height="60"></a-plane>
-            <a-box position="0 0 0" width="0.05" depth="0.05" height="20" color="red"></a-box>
+            <!-- ROOM -->
+            <a-entity id="wc" gltf-model="#wc_gltf" scale="0.2 0.2 0.2" rotation="0 0 0"></a-entity>
+            <a-entity obj-model="obj:#floor" material="src:#floorimg" scale="0.2 0.2 0.2" rotation="0 180 0"></a-entity>
+            <!-- <a-entity obj-model="obj:#navmesh" material="color:red" scale="0.2 0.2 0.2" rotation="0 0 0" position="0 0 0" nav-mesh ></a-entity> -->
 
-            <!-- <a-entity mixin="shelf_v6_mix" position="1.48 0 0" rotation="0 90 0"></a-entity> -->
-            <!-- <a-entity mixin="shelf_v6_mix" position="4.44 0 0" rotation="0 90 0"></a-entity> -->
-            <!-- <a-entity mixin="shelf_v6_mix" position="2.96 0 1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="2.96 0 -1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-2.96 0 1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-2.96 0 -1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="1.48 0 2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-1.48 0 2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="1.48 0 -2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-1.48 0 -2.96" rotation="0 90 0"></a-entity> -->
+            <!-- COLUMNS : commented columns are for rooms/origin -->
+            <a-entity id="column-group">
+                <a-entity mixin="shelf_v8_corner_mix" position="14.81 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="14.81 0 2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="14.81 0 5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="14.81 0 8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="14.81 0 11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="14.81 0 14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="14.81 0 -2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="14.81 0 -5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="14.81 0 -8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="14.81 0 -11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="14.81 0 -14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-14.81 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-14.81 0 2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-14.81 0 5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-14.81 0 8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-14.81 0 11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-14.81 0 14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-14.81 0 -2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-14.81 0 -5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-14.81 0 -8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-14.81 0 -11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-14.81 0 -14.8"></a-entity>
 
+                <a-entity mixin="shelf_v8_corner_mix" position="11.85 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="11.85 0 2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="11.85 0 5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="11.85 0 8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="11.85 0 11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="11.85 0 14.8"></a-entity>
+                <!-- <a-entity mixin="shelf_v8_corner_mix" position="11.84 0 -2.96"></a-entity> -->
+                <a-entity mixin="shelf_v8_corner_mix" position="11.85 0 -5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="11.85 0 -8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="11.85 0 -11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="11.85 0 -14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-11.85 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-11.85 0 2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-11.85 0 5.92"></a-entity>
+                <!-- <a-entity mixin="shelf_v8_corner_mix" position="-11.84 0 8.88"></a-entity> -->
+                <!-- <a-entity mixin="shelf_v8_corner_mix" position="-11.84 0 11.84"></a-entity> -->
+                <a-entity mixin="shelf_v8_corner_mix" position="-11.85 0 14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-11.85 0 -2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-11.85 0 -5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-11.85 0 -8.88"></a-entity>
+                <!-- <a-entity mixin="shelf_v8_corner_mix" position="-11.84 0 -11.84"></a-entity> -->
+                <a-entity mixin="shelf_v8_corner_mix" position="-11.85 0 -14.8"></a-entity>
 
-            <!-- COLUMNS : commented columns for rooms/origin -->
-            <a-entity mixin="shelf_v6_corner_mix" position="14.8 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="14.8 0 2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="14.8 0 5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="14.8 0 8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="14.8 0 11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="14.8 0 14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="14.8 0 -2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="14.8 0 -5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="14.8 0 -8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="14.8 0 -11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="14.8 0 -14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-14.8 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-14.8 0 2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-14.8 0 5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-14.8 0 8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-14.8 0 11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-14.8 0 14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-14.8 0 -2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-14.8 0 -5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-14.8 0 -8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-14.8 0 -11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-14.8 0 -14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="8.89 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="8.89 0 2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="8.89 0 5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="8.89 0 8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="8.89 0 11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="8.89 0 14.8"></a-entity>
+                <!-- <a-entity mixin="shelf_v8_corner_mix" position="8.88 0 -2.96"></a-entity> -->
+                <a-entity mixin="shelf_v8_corner_mix" position="8.89 0 -5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="8.89 0 -8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="8.89 0 -11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="8.89 0 -14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-8.89 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-8.89 0 2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-8.89 0 5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-8.89 0 8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-8.89 0 11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-8.89 0 14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-8.89 0 -2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-8.89 0 -5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-8.89 0 -8.88"></a-entity>
+                <!-- <a-entity mixin="shelf_v8_corner_mix" position="-8.88 0 -11.84"></a-entity> -->
+                <a-entity mixin="shelf_v8_corner_mix" position="-8.89 0 -14.8"></a-entity>
 
-            <a-entity mixin="shelf_v6_corner_mix" position="11.84 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="11.84 0 2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="11.84 0 5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="11.84 0 8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="11.84 0 11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="11.84 0 14.8"></a-entity>
-            <!-- <a-entity mixin="shelf_v6_corner_mix" position="11.84 0 -2.96"></a-entity> -->
-            <a-entity mixin="shelf_v6_corner_mix" position="11.84 0 -5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="11.84 0 -8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="11.84 0 -11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="11.84 0 -14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-11.84 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-11.84 0 2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-11.84 0 5.92"></a-entity>
-            <!-- <a-entity mixin="shelf_v6_corner_mix" position="-11.84 0 8.88"></a-entity> -->
-            <!-- <a-entity mixin="shelf_v6_corner_mix" position="-11.84 0 11.84"></a-entity> -->
-            <a-entity mixin="shelf_v6_corner_mix" position="-11.84 0 14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-11.84 0 -2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-11.84 0 -5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-11.84 0 -8.88"></a-entity>
-            <!-- <a-entity mixin="shelf_v6_corner_mix" position="-11.84 0 -11.84"></a-entity> -->
-            <a-entity mixin="shelf_v6_corner_mix" position="-11.84 0 -14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="5.93 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="5.93 0 2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="5.93 0 5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="5.93 0 8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="5.93 0 11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="5.93 0 14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="5.93 0 -2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="5.93 0 -5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="5.93 0 -8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="5.93 0 -11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="5.93 0 -14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-5.93 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-5.93 0 2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-5.93 0 5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-5.93 0 8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-5.93 0 11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-5.93 0 14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-5.93 0 -2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-5.93 0 -5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-5.93 0 -8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-5.93 0 -11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-5.93 0 -14.8"></a-entity>
 
-            <a-entity mixin="shelf_v6_corner_mix" position="8.88 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="8.88 0 2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="8.88 0 5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="8.88 0 8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="8.88 0 11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="8.88 0 14.8"></a-entity>
-            <!-- <a-entity mixin="shelf_v6_corner_mix" position="8.88 0 -2.96"></a-entity> -->
-            <a-entity mixin="shelf_v6_corner_mix" position="8.88 0 -5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="8.88 0 -8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="8.88 0 -11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="8.88 0 -14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-8.88 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-8.88 0 2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-8.88 0 5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-8.88 0 8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-8.88 0 11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-8.88 0 14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-8.88 0 -2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-8.88 0 -5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-8.88 0 -8.88"></a-entity>
-            <!-- <a-entity mixin="shelf_v6_corner_mix" position="-8.88 0 -11.84"></a-entity> -->
-            <a-entity mixin="shelf_v6_corner_mix" position="-8.88 0 -14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="2.97 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="2.97 0 2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="2.97 0 5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="2.97 0 8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="2.97 0 11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="2.97 0 14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="2.97 0 -2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="2.97 0 -5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="2.97 0 -8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="2.97 0 -11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="2.97 0 -14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-2.97 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-2.97 0 2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-2.97 0 5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-2.97 0 8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-2.97 0 11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-2.97 0 14.8"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-2.97 0 -2.96"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-2.97 0 -5.92"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-2.97 0 -8.88"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-2.97 0 -11.84"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="-2.97 0 -14.8"></a-entity>
 
-            <a-entity mixin="shelf_v6_corner_mix" position="5.92 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="5.92 0 2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="5.92 0 5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="5.92 0 8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="5.92 0 11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="5.92 0 14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="5.92 0 -2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="5.92 0 -5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="5.92 0 -8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="5.92 0 -11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="5.92 0 -14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-5.92 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-5.92 0 2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-5.92 0 5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-5.92 0 8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-5.92 0 11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-5.92 0 14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-5.92 0 -2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-5.92 0 -5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-5.92 0 -8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-5.92 0 -11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-5.92 0 -14.8"></a-entity>
-
-            <a-entity mixin="shelf_v6_corner_mix" position="2.96 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="2.96 0 2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="2.96 0 5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="2.96 0 8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="2.96 0 11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="2.96 0 14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="2.96 0 -2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="2.96 0 -5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="2.96 0 -8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="2.96 0 -11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="2.96 0 -14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-2.96 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-2.96 0 2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-2.96 0 5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-2.96 0 8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-2.96 0 11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-2.96 0 14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-2.96 0 -2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-2.96 0 -5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-2.96 0 -8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-2.96 0 -11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="-2.96 0 -14.8"></a-entity>
-
-            <!-- <a-entity mixin="shelf_v6_corner_mix" position="0 0 0"></a-entity> -->
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 -2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 -5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 -8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 -11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 -14.8"></a-entity>
-            <!-- <a-entity mixin="shelf_v6_corner_mix" position="0 0 0"></a-entity> -->
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 14.8"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 -2.96"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 -5.92"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 -8.88"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 -11.84"></a-entity>
-            <a-entity mixin="shelf_v6_corner_mix" position="0 0 -14.8"></a-entity>
+                <!-- <a-entity mixin="shelf_v8_corner_mix" position="0 0 0"></a-entity> -->
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 2.97"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 5.93"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 8.89"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 11.85"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 14.81"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 -2.97"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 -5.93"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 -8.89"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 -11.85"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 -14.81"></a-entity>
+                <!-- <a-entity mixin="shelf_v8_corner_mix" position="0 0 0"></a-entity> -->
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 2.97"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 5.93"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 8.89"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 11.85"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 14.81"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 -2.97"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 -5.93"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 -8.89"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 -11.85"></a-entity>
+                <a-entity mixin="shelf_v8_corner_mix" position="0 0 -14.81"></a-entity>
+            </a-entity>
 
             <!-- SHELVES -->
+            <a-entity id="shelf-group">
+                <!-- vertical -->
+                <a-entity mixin="shelf_v8_mix" position="2.96 0.01 1.48" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-2.96 0.01 1.48" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="2.96 0.01 -1.48" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-2.96 0.01 -1.48" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-5.92 0.01 1.48" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-11.84 0.01 1.48" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="5.92 0.01 -1.48" rotation="0 0 0"></a-entity>
 
-            <!-- vertical -->
-            <a-entity mixin="shelf_v6_mix" position="2.96 0 1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-2.96 0 1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="2.96 0 -1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-2.96 0 -1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-5.92 0 1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-11.84 0 1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="5.92 0 -1.48" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-5.92 0.01 4.44" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-8.88 0.01 4.44" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="2.96 0.01 -4.44" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="5.92 0.01 -4.44" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-8.88 0.01 -4.44" rotation="0 0 0"></a-entity>
 
-            <a-entity mixin="shelf_v6_mix" position="-5.92 0 4.44" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-8.88 0 4.44" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="2.96 0 -4.44" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="5.92 0 -4.44" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-8.88 0 -4.44" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="2.96 0.01 7.4" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-2.96 0.01 7.4" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-5.92 0.01 7.4" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-8.88 0.01 7.4" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="5.92 0.01 -7.4" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="2.96 0.01 -7.4" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-5.92 0.01 -7.4" rotation="0 0 0"></a-entity>
 
-            <a-entity mixin="shelf_v6_mix" position="2.96 0 7.4" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-2.96 0 7.4" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-5.92 0 7.4" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-8.88 0 7.4" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="5.92 0 -7.4" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="2.96 0 -7.4" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-5.92 0 -7.4" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="8.88 0.01 10.36" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="5.92 0.01 10.36" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="2.96 0.01 10.36" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-8.88 0.01 10.36" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-5.92 0.01 -10.36" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="0 0.01 -10.36" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-2.96 0.01 -10.36" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-5.92 0.01 -10.36" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="5.92 0.01 -10.36" rotation="0 0 0"></a-entity>
 
-            <a-entity mixin="shelf_v6_mix" position="8.88 0 10.36" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="5.92 0 10.36" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="2.96 0 10.36" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-8.88 0 10.36" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-5.92 0 -10.36" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="0 0 -10.36" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-2.96 0 -10.36" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-5.92 0 -10.36" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="5.92 0 -10.36" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="5.92 0.01 13.32" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="2.96 0.01 -13.32" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-2.96 0.01 -13.32" rotation="0 0 0"></a-entity>
 
-            <a-entity mixin="shelf_v6_mix" position="5.92 0 13.32" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="2.96 0 -13.32" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-2.96 0 -13.32" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="14.8 0.01 1.48" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="14.8 0.01 4.44" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="14.8 0.01 7.4" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="14.8 0.01 10.36" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="14.8 0.01 13.32" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="14.8 0.01 -1.48" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="14.8 0.01 -4.44" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="14.8 0.01 -7.4" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="14.8 0.01 -10.36" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="14.8 0.01 -13.32" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-14.8 0.01 1.48" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-14.8 0.01 4.44" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-14.8 0.01 7.4" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-14.8 0.01 10.36" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-14.8 0.01 13.32" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-14.8 0.01 -1.48" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-14.8 0.01 -4.44" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-14.8 0.01 -7.4" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-14.8 0.01 -10.36" rotation="0 0 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-14.8 0.01 -13.32" rotation="0 0 0"></a-entity>
 
-            <a-entity mixin="shelf_v6_mix" position="14.8 0 1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="14.8 0 4.44" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="14.8 0 7.4" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="14.8 0 10.36" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="14.8 0 13.32" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="14.8 0 -1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="14.8 0 -4.44" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="14.8 0 -7.4" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="14.8 0 -10.36" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="14.8 0 -13.32" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-14.8 0 1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-14.8 0 4.44" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-14.8 0 7.4" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-14.8 0 10.36" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-14.8 0 13.32" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-14.8 0 -1.48" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-14.8 0 -4.44" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-14.8 0 -7.4" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-14.8 0 -10.36" rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-14.8 0 -13.32" rotation="0 0 0"></a-entity>
+                <!-- horizontal -->
+                <a-entity mixin="shelf_v8_mix" position="1.48 0.01 -8.88" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="1.48 0.01 -2.96" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="1.48 0.01 2.96" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="1.48 0.01 8.88" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="1.48 0.01 11.84" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-1.48 0.01 -8.88" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-1.48 0.01 -5.92" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-1.48 0.01 -2.96" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-1.48 0.01 5.92" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-1.48 0.01 11.84" rotation="0 90 0"></a-entity>
 
-            <!-- horizontal -->
-            <a-entity mixin="shelf_v6_mix" position="1.48 0 -8.88" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="1.48 0 -2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="1.48 0 2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="1.48 0 8.88" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="1.48 0 11.84" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-1.48 0 -8.88" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-1.48 0 -5.92" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-1.48 0 -2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-1.48 0 5.92" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-1.48 0 11.84" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="4.44 0.01 2.96" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="4.44 0.01 5.92" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-4.44 0.01 -5.92" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-4.44 0.01 -2.96" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-4.44 0.01 8.88" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-4.44 0.01 11.84" rotation="0 90 0"></a-entity>
 
-            <a-entity mixin="shelf_v6_mix" position="4.44 0 2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="4.44 0 5.92" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-4.44 0 -5.92" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-4.44 0 -2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-4.44 0 8.88" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-4.44 0 11.84" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="7.4 0.01 -11.84" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="7.4 0.01 -5.92" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="7.4 0.01 0" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="7.4 0.01 2.96" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="7.4 0.01 5.92" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-7.4 0.01 -8.88" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-7.4 0.01 -2.96" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-7.4 0.01 0" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-7.4 0.01 11.84" rotation="0 90 0"></a-entity>
 
-            <a-entity mixin="shelf_v6_mix" position="7.4 0 -11.84" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="7.4 0 -5.92" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="7.4 0 0" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="7.4 0 2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="7.4 0 5.92" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-7.4 0 -8.88" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-7.4 0 -2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-7.4 0 0" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-7.4 0 11.84" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="10.36 0.01 -11.84" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="10.36 0.01 -8.88" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="10.36 0.01 -5.92" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="10.36 0.01 0" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="10.36 0.01 2.96" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="10.36 0.01 5.92" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="10.36 0.01 8.88" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="10.36 0.01 11.84" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-10.36 0.01 -8.88" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-10.36 0.01 -5.92" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-10.36 0.01 0" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-10.36 0.01 5.92" rotation="0 90 0"></a-entity>
 
-            <a-entity mixin="shelf_v6_mix" position="10.36 0 -11.84" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="10.36 0 -8.88" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="10.36 0 -5.92" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="10.36 0 0" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="10.36 0 2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="10.36 0 5.92" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="10.36 0 8.88" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="10.36 0 11.84" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-10.36 0 -8.88" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-10.36 0 -5.92" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-10.36 0 0" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-10.36 0 5.92" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="13.32 0.01 -8.88" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="13.32 0.01 0" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="13.32 0.01 8.88" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-13.32 0.01 -8.88" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-13.32 0.01 -2.96" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-13.32 0.01 2.96" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-13.32 0.01 5.92" rotation="0 90 0"></a-entity>
 
-            <a-entity mixin="shelf_v6_mix" position="13.32 0 -8.88" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="13.32 0 0" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="13.32 0 8.88" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-13.32 0 -8.88" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-13.32 0 -2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-13.32 0 2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-13.32 0 5.92" rotation="0 90 0"></a-entity>
-
-            <a-entity mixin="shelf_v6_mix" position="1.48 0 14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="4.44 0 14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="7.4 0 14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="10.36 0 14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="13.32 0 14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-1.48 0 14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-4.44 0 14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-7.4 0 14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-10.36 0 14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-13.32 0 14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="1.48 0 -14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="4.44 0 -14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="7.4 0 -14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="10.36 0 -14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="13.32 0 -14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-1.48 0 -14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-4.44 0 -14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-7.4 0 -14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-10.36 0 -14.8" rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf_v6_mix" position="-13.32 0 -14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="1.48 0.01 14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="4.44 0.01 14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="7.4 0.01 14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="10.36 0.01 14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="13.32 0.01 14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-1.48 0.01 14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-4.44 0.01 14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-7.4 0.01 14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-10.36 0.01 14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-13.32 0.01 14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="1.48 0.01 -14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="4.44 0.01 -14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="7.4 0.01 -14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="10.36 0.01 -14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="13.32 0.01 -14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-1.48 0.01 -14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-4.44 0.01 -14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-7.4 0.01 -14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-10.36 0.01 -14.8" rotation="0 90 0"></a-entity>
+                <a-entity mixin="shelf_v8_mix" position="-13.32 0.01 -14.8" rotation="0 90 0"></a-entity>
+            </a-entity>
             
-            <!-- CABINETS -->
-            <a-entity mixin="cabinet_v1_mix" position="-10.36 0 -11.84" rotation="0 90 0"></a-entity>
-            <a-entity mixin="cabinet_v1_mix" position="10.36 0 -2.96" rotation="0 90 0"></a-entity>
-            <a-entity mixin="cabinet_v1_mix" position="-11.84 0 10.36" rotation="0 0 0"></a-entity>
+            <!-- CABINETS & OBJECTS -->
+            <a-entity id="cabinet-group">
+                <a-entity mixin="cabinet_v2_mix" position="-10.36 0 -11.84" rotation="0 90 0">
+                    <a-entity obj-model="obj:#anubis" material="src:#anubisimg" scale="0.6 0.6 0.6" position="0 6 -5.5" rotation="0 -90 0"></a-entity>
+                    <a-entity obj-model="obj:#horus" material="src:#horusimg" scale="0.6 0.6 0.6" position="0 6 0"  rotation="0 -90 0"></a-entity>
+                    <a-entity obj-model="obj:#isis" material="src:#isisimg" scale="0.6 0.6 0.6" position="0 6 5.5"  rotation="0 -90 0"></a-entity>
+                </a-entity>
 
+                <a-entity mixin="cabinet_v2_mix" position="10.36 0 -2.96" rotation="0 90 0">
+                    <a-entity obj-model="obj:#moai1" material="src:#moai1img" scale="0.6 0.6 0.6" position="0 6 -5.5" rotation="0 90 0"></a-entity>
+                    <a-entity obj-model="obj:#moai2" material="src:#moai2img" scale="0.6 0.6 0.6" position="0 6 0"  rotation="0 90 0"></a-entity>
+                    <a-entity obj-model="obj:#moai3" material="src:#moai3img" scale="0.6 0.6 0.6" position="0 6 5.5"  rotation="0 90 0"></a-entity>
+                </a-entity>
 
+                <a-entity mixin="cabinet_v2_mix" position="-11.84 0 10.36" rotation="0 0 0">
+                    <a-entity obj-model="obj:#whalehat" material="src:#whaleimg" scale="0.6 0.6 0.6" position="0 6.4 -5.5" rotation="0 90 0"></a-entity>
+                    <a-entity obj-model="obj:#turtlehat" material="src:#turtleimg" scale="0.6 0.6 0.6" position="0 6.4 0"  rotation="0 0 0"></a-entity>
+                    <a-entity obj-model="obj:#normhat" material="src:#normimg" scale="0.6 0.6 0.6" position="0 6.4 5.5"  rotation="0 90 0"></a-entity>
+                </a-entity>
 
-            <!-- <a-entity mixin="shelf_v6_mix" position="2.68 0 1.48" rotation="0 0 0"></a-entity> -->
+                <a-entity id="dropzone" obj-model="obj:#cabinet_small" material="src:#cabinet_small_img" scale="0.2 0.2 0.2" position="0 0 -2" rotation="0 90 0"></a-entity>
+            </a-entity>
 
-            <!-- SHELVES -->
-            <!-- <a-entity mixin="shelf1mix" position="1.1537‬ 0 0"           rotation="0 90 0"></a-entity> -->
-            <!-- <a-entity mixin="shelf1mix" position="1.1537 0 2.3074"      rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf1mix" position="1.1537‬ 0 -2.3074"     rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf1mix" position="-1.1537 0 2.3074"     rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf1mix" position="-1.1537‬ 0 -2.3074"    rotation="0 90 0"></a-entity>
-            <a-entity mixin="shelf1mix" position="2.3074 0 1.1537‬"      rotation="0 0 0"></a-entity>
-            <a-entity mixin="shelf1mix" position="-2.3074‬ 0 1.1537"     rotation="0 0 0"></a-entity>
-
-            <a-entity mixin="shelfbooksmix" position="0 0 0" rotation="0 0 0"></a-entity> -->
-
+            <!-- OBJECTS -->
             
 
-            <!-- <a-entity
-                id='maze'
-                obj-model="obj: #maze"
-                material="src: #mazeimg"
-                scale="0.2 0.2 0.2"></a-entity> -->
-
+            
         </a-scene>
 
 
@@ -391,5 +411,3 @@
         </script>
     </body>
 </html>
-
-<!-- use just obj and separate material to load image -->
