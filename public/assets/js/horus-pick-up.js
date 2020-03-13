@@ -2,7 +2,6 @@ AFRAME.registerComponent('obj-pick-up', {
     schema: {},
 
     init : function() {
-        console.log('object grabbed');
         const Context_AF = this;
         Context_AF.el.addEventListener('click', function() {
             Context_AF.parentUnder();
@@ -20,4 +19,3 @@ AFRAME.registerComponent('obj-pick-up', {
         this.el.parentNode.removeChild(this.el);
     }
 });
-

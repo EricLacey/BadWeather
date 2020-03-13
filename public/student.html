@@ -4,7 +4,8 @@
         <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
         <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
-        <script src="assets/js/horus-component.js"></script> <!-- For object pickup -->
+        <script src="assets/js/horus-pick-up.js"></script> <!-- For object pickup -->
+        <script src="assets/js/horus-put-down.js"></script>
     </head>
 
     <body>
@@ -378,15 +379,16 @@
                     <a-entity obj-model="obj:#normhat" material="src:#normimg" scale="0.6 0.6 0.6" position="0 6.4 5.5"  rotation="0 90 0"></a-entity>
                 </a-entity>
 
-                <!-- TEST: DROP OFF ZONE -->
+                <!-- TEST: DROP OFF ZONE to put down objects -->
                 <a-entity   id="dropzone"
                             obj-model="obj:#cabinet_small"
                             material="src:#cabinet_small_img"
                             scale="0.2 0.2 0.2"
                             position="0 0 -2"
                             rotation="0 90 0"
-                            obj-put-down=""></a-entity>
+                            obj-put-down="">
                 </a-entity>
+                <a-entity id="placedObj" position="0 3 -2" visible="true"></a-entity>
 
             <!-- OBJECTS -->
             <!-- TEST: PICK UP THIS OBJECT -->
