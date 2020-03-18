@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Object Appears test</title>
+    <!-- loading socket -->
+    <script src="/socket.io/socket.io.js"></script>
+    <meta charset = "UTF-8"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
+
+        body{
+            background-color: #D1C89D;
+            text-align: center;
+        }
+        #instructions{
+            margin: 20px;
+            font-size: 25px;
+            font-family: 'PT Sans', sans-serif;
+        } 
+        img{
+            width:55%
+            
+        }
+
+    </style>
+</head>
+<body onload="timer();">
+
+    <!-- instructions -->
+    <div id="instructions">
+        Try to remember this artifact! Time left: <p id="demo"></p>    
+    </div>
+
+    
+
+    <!-- image of an artifact on paper here -->
+    <img src="assets/images/paper01.png" alt="Image of an artifact here"/>
+
+    <br>
+
+    <!-- test link to the next page -->
+    <a href="/professorCanvas">To canvas</a>
+   
+    <script type="text/javascript">
+        //socket
+        let socket = io();
+
+        //socket events
+        socket.on('connect', function(){
+           console.log('professorObjectAppearsScreen accessed');
+        });
+
+        //Timer 
+        function timer() {
+            // Set the date we're counting down to
+            let secs = 9;
+            let now = new Date().getTime();
+            let endTime = new Date().setTime(now + (secs * 1000))
+
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+
+                // Get today's date and time
+                now = new Date().getTime();
+
+                // Find the distance between now and the count down date
+                var distance = endTime - now;
+
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="demo"
+                //  document.getElementById("timer").innerHTML = seconds + "s ";
+                document.getElementById("demo").innerHTML = seconds + "s ";
+
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "Expired!";
+                }
+            }, 500);
+        }
+    </script>
+    </body>
+</body>
+</html>

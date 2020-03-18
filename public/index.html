@@ -1,13 +1,84 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <h1>Home Page</h1>
+<head>
+    <title>Start Screen test</title>
+    <!-- loading socket -->
+    <script src="/socket.io/socket.io.js"></script>
+    <meta charset = "UTF-8"/>
+    <!-- CSS style -->
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
 
-    </head>
+        body{
+            background-color: #D1C89D;
+            text-align: center;
+            margin-top: 5%;
+        }   
+        img{
+            width: 50%;
+            height: auto;
+        } 
+        #title{
+            padding: 20px 20px;
+        }
+        button{
+            background-color:black;
+            opacity: 0.5;
+            border: none;
+            color: #D1C89D;
+            text-align: center;
+            text-decoration: none;
+            width: 60%;
+            height: 80px;
+            font-size: 50px;
+            font-family: 'PT Sans', sans-serif;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.472), 0 17px 50px 0 rgba(0,0,0,0.19);
+            /* to determine speed of the "hover" effect. */
+            transition-duration: 0.4s;
+            padding-bottom: 0px;
+        }
+        .btnS{
+            margin-bottom: 50px;
+        }
+        button:hover {
+            opacity: 1
+        }
+        .responsive-width {
+            font-size: 3vw;
+        }
+        #logo{
+            padding: 40px 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- title -->
+    <div id="title">
+        <img src="assets/images/title.png" alt="Artificium Venari"/> 
+    </div> 
 
-    <body>
-        <a href="/student">Student Page</a>
-        <a href="/professor">Professor Page</a>
-        <a href="/test">Testing Page</a>
+    <!-- buttons -->
+    <button onclick="location.href='/student'" type="button" class="btnS btn-default btn-lg btn-block responsive-width">
+    Student  
+    </button>
+   
+    <button onclick="location.href='/professorObjectAppears'" type="button" class="btnP btn-default btn-lg btn-block responsive-width">
+        Professor
+    </button>
+
+    <!-- logo -->
+    <div id="logo">
+        <img src="assets/images/logo.png" alt="Game by Sun Dog Studios"/>
+    </div>
+
+     <!-- SOCKET SCRIPT -->
+     <script>
+        let socket = io();
+
+        //socket events
+        socket.on('connect', function(){
+           console.log('professorStartScreen accessed');
+        });
+    </script>
     </body>
 </html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+    <title>Professor Map and Buttons</title>
+    <!-- loading socket -->
+    <script src="/socket.io/socket.io.js"></script>
+    <meta charset = "UTF-8"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
+
+        body{
+            background-color: #D1C89D;
+            font-family: 'PT Sans', sans-serif;
+            text-align: center;
+            }
+        #map{
+            
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            
+        }
+        img{
+            width: 70%;
+        }
+        button{
+            background-color:black;
+            opacity: 0.5;
+            border: none;
+            color: #D1C89D;
+            text-align: center;
+            text-decoration: none;
+            width: 320px;
+            height: 80px;
+            font-size: 50px;
+            font-family: 'PT Sans', sans-serif;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.472), 0 17px 50px 0 rgba(0,0,0,0.19);
+            /* to determine speed of the "hover" effect. */
+            transition-duration: 0.4s;
+        }
+        #btnC:hover{
+            background-color: #3c89d0;
+            color: #082284;
+            opacity: 1;
+            box-shadow: none;
+        }
+        #btnH:hover{
+            background-color: #ff3333;
+            color: #990000;
+            opacity: 1;
+            box-shadow: none;
+        }
+
+    </style>
+</head>
+<body >
+    <p> </p>
+
+     <!-- map -->
+     <div id="map">
+        <img src="assets/images/map.png" alt="Top down map of the 2nd player environment"/>
+    </div>
+
+    <!-- btn COLD -->
+    <button onclick="location.href='/'" id="btnC" type="button" class="btn btn-default btn-lg btn-block responsive-width">
+        COLD
+    </button>
+
+     <!-- btn HOT -->
+     <button onclick="location.href='/'" id="btnH" type="button" class="btn btn-default btn-lg btn-block responsive-width">
+        HOT
+    </button>
+
+
+    <!-- SOCKET SCRIPT -->
+    <script>
+        let socket = io();
+
+        //socket events
+        socket.on('connect', function(){
+           console.log('professorMapAndButtons accessed');
+        });
+    </script>
+</body>

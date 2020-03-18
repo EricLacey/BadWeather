@@ -17,12 +17,16 @@ app.get('/student', function(req,res) {
     res.sendFile(__dirname + '/public/student.html');
 });
 
-app.get('/professor', function(req,res) {
-    res.sendFile(__dirname + '/public/professor.html');
+app.get('/professorCanvas', function(req,res) {
+    res.sendFile(__dirname + '/public/professorCanvas.html');
 });
 
-app.get('/test', function(req,res) {
-    res.sendFile(__dirname + '/public/test.html');
+app.get('/professorObjectAppears', function(req,res) {
+    res.sendFile(__dirname + '/public/professorObjectAppears.html');
+});
+
+app.get('/professorMapAndButtons', function(req,res) {
+    res.sendFile(__dirname + '/public/professorMapAndButtons.html');
 });
 
 //websocket stuff
