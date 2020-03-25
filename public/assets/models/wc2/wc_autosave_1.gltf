@@ -3,35 +3,35 @@
     {
       "bufferView": 0,
       "componentType": 5125,
-      "count": 3252,
+      "count": 2166,
       "type": "SCALAR"
     },
     {
       "bufferView": 1,
       "componentType": 5126,
-      "count": 1813,
+      "count": 1062,
       "max": [
-        0.290598958730698,
-        1.0,
-        0.871796846389771
+        0.998241543769836,
+        0.266254901885986,
+        1.00000011920929
       ],
       "min": [
-        -0.290598958730698,
-        -1.0,
-        -0.871796846389771
+        -0.998241484165192,
+        -0.266254901885986,
+        -1.0
       ],
       "type": "VEC3"
     },
     {
       "bufferView": 2,
       "componentType": 5126,
-      "count": 1813,
+      "count": 1062,
       "type": "VEC3"
     },
     {
       "bufferView": 3,
       "componentType": 5126,
-      "count": 1813,
+      "count": 1062,
       "type": "VEC2"
     }
   ],
@@ -42,49 +42,49 @@
   "bufferViews": [
     {
       "buffer": 0,
-      "byteLength": 13008,
+      "byteLength": 8664,
       "target": 34963
     },
     {
       "buffer": 0,
-      "byteLength": 21756,
-      "byteOffset": 13008,
+      "byteLength": 12744,
+      "byteOffset": 8664,
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 21756,
-      "byteOffset": 34764,
+      "byteLength": 12744,
+      "byteOffset": 21408,
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 14504,
-      "byteOffset": 56520,
+      "byteLength": 8496,
+      "byteOffset": 34152,
       "target": 34962
     }
   ],
   "buffers": [
     {
-      "byteLength": 71024,
-      "uri": "shelf_v8.bin"
+      "byteLength": 42648,
+      "uri": "wc_autosave_1.bin"
     }
   ],
   "images": [
     {
-      "uri": "phong29SG_baseColor.png"
+      "uri": "initialShadingGroup_baseColor.png"
     },
     {
-      "uri": "phong29SG_occlusionRoughnessMetallic.png"
+      "uri": "initialShadingGroup_occlusionRoughnessMetallic.png"
     },
     {
-      "uri": "phong29SG_normal.png"
+      "uri": "initialShadingGroup_normal.png"
     }
   ],
   "materials": [
     {
       "alphaMode": "OPAQUE",
-      "name": "phong29SG",
+      "name": "initialShadingGroup",
       "normalTexture": {
         "index": 2
       },
@@ -103,7 +103,7 @@
   ],
   "meshes": [
     {
-      "name": "shelf_v8_tester_pCube265",
+      "name": "wc_grp1",
       "primitives": [
         {
           "attributes": {
@@ -123,27 +123,27 @@
       "children": [
         1
       ],
-      "name": "shelf_v8.obj",
+      "name": "wc.obj",
       "scale": [
-        6.88233709335327,
-        6.88233709335327,
-        6.88233709335327
+        80.1158447265625,
+        80.1158447265625,
+        80.1158447265625
       ],
       "translation": [
-        0.0,
-        6.88233709335327,
-        0.0
+        -0.0507736206054688,
+        21.3312358856201,
+        0.0331344604492188
       ]
     },
     {
       "children": [
         2
       ],
-      "name": "g shelf_v8_tester_pCube265"
+      "name": "g wc_grp1"
     },
     {
       "mesh": 0,
-      "name": "shelf_v8_tester_pCube265"
+      "name": "wc_grp1"
     }
   ],
   "samplers": [
