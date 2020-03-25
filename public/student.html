@@ -81,6 +81,10 @@
             
                 <!----------- object that was clicked, parented to camera ------------>
                 <a-entity id="grabbedObj" position="-2.25 -1.25 -1.5" visible="true"></a-entity>
+
+                <!-- BACKGROUND MUSIC, parented to camera so same loudness throughout -->
+                <!-- https://joshondesign.com/2017/07/24/aframe_tips -->
+                <a-sound src="url(/assets/audio/backgroundSong.mp3)" autoplay="true" position="0 0 0" loop="true" volume="0.75"></a-sound>
             </a-entity>
             
 
@@ -361,10 +365,6 @@
                 <a-entity mixin="shelf_v8_mix" position="-10.36 0.01 -14.8" rotation="0 90 0"></a-entity>
                 <a-entity mixin="shelf_v8_mix" position="-13.32 0.01 -14.8" rotation="0 90 0"></a-entity>
             </a-entity>
-            
-            <!-- BACKGROUND MUSIC -->
-            <!-- https://github.com/aframevr/aframe/blob/master/docs/components/sound.md -->
-            <a-entity sound="src: #music; autoplay: true;"></a-entity>
 
             <!-- CABINETS & OBJECTS -->
             <a-entity id="cabinet-group">
