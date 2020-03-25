@@ -27,12 +27,17 @@
             text-align: center;
             text-decoration: none;
         }
+        #timer{
+            font-family: 'PT Sans', sans-serif;
+            font-size: 25px;
+        }
     </style>
 </head>
 <body onload="InitThis(); timer();">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="assets/js/canvasCode.js"></script>
     <div align="center">
+        <div id="timer"> 10 s </div>
         <canvas id="myCanvas" width="500" height="500"></canvas>
         <img id=canvasImg src="">
         <br /><br />
@@ -53,10 +58,6 @@
             <option value="yellow">yellow</option>
             <option value="gray">gray</option>
         </select>
-        <div id="timer">test timer</div>
-        
-        <br>     <!-- test link to the next page -->
-        <a href="/professorMapAndButtons">To map and buttons</a>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
@@ -70,7 +71,7 @@
 
         function timer() {
             // Set the date we're counting down to
-            let secs = 5;
+            let secs = 10;
             let now = new Date().getTime();
             let endTime = new Date().setTime(now + (secs * 1000))
 
@@ -86,7 +87,7 @@
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             // Display the result in the element with id="demo"
-            document.getElementById("timer").innerHTML = seconds + "s ";
+            document.getElementById("timer").innerHTML = seconds + " s ";
 
             // If the count down is finished, write some text
             if (distance < 0) {
@@ -101,7 +102,11 @@
 
                 document.getElementById('canvasImg').src = dataURL;
                 document.getElementById("canvasImg").setAttribute("style", "border:2px solid black; display:inline")
-                document.getElementById("myCanvas").setAttribute("style", "border:2px solid black; display:none")   
+                document.getElementById("myCanvas").setAttribute("style", "border:2px solid black; display:none") 
+                
+                window.setTimeout(function(){
+                        window.location.href = "/professorMapAndButtons";
+                    }, 1000);
             }
         }, 500);
     }

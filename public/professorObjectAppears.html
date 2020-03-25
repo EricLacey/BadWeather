@@ -28,18 +28,16 @@
 
     <!-- instructions -->
     <div id="instructions">
-        Try to remember this artifact! Time left: <p id="demo"></p>    
+        Try to remember this artifact! Time left: 
+        <p id="demo"> 9 s </p>  
     </div>
-
+   
     
 
     <!-- image of an artifact on paper here -->
     <img src="assets/images/paper01.png" alt="Image of an artifact here"/>
 
-    <br>
 
-    <!-- test link to the next page -->
-    <a href="/professorCanvas">To canvas</a>
    
     <script type="text/javascript">
         //socket
@@ -68,14 +66,17 @@
 
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Display the result in the element with id="demo"
                 //  document.getElementById("timer").innerHTML = seconds + "s ";
-                document.getElementById("demo").innerHTML = seconds + "s ";
+                document.getElementById("demo").innerHTML = seconds + " s ";
 
                 // If the count down is finished, write some text
                 if (distance < 0) {
                     clearInterval(x);
                     document.getElementById("demo").innerHTML = "Expired!";
+                    // Load next page in 1 sec
+                    window.setTimeout(function(){
+                        window.location.href = "/professorCanvas";
+                    }, 1000);
                 }
             }, 500);
         }
