@@ -63,6 +63,9 @@
                 <a-asset-item crossorigin="anonymous" id="moai2" src="assets/models/moai/2/moai2_texture.gltf"></a-asset-item>
                 <a-asset-item crossorigin="anonymous" id="moai3" src="assets/models/moai/3/moai3_texture.gltf"></a-asset-item> -->
 
+                <!-- Background music -->
+                <audio id="music" src="/assets/audio/backgroundSong.mp3" preload="auto"></audio>
+
             </a-assets>
 
             <!-- MIXINS -->
@@ -359,6 +362,10 @@
                 <a-entity mixin="shelf_v8_mix" position="-13.32 0.01 -14.8" rotation="0 90 0"></a-entity>
             </a-entity>
             
+            <!-- BACKGROUND MUSIC -->
+            <!-- https://github.com/aframevr/aframe/blob/master/docs/components/sound.md -->
+            <a-entity sound="src: #music; autoplay: true;"></a-entity>
+
             <!-- CABINETS & OBJECTS -->
             <a-entity id="cabinet-group">
                 <a-entity mixin="cabinet_v2_mix" position="-10.36 0 -11.84" rotation="0 90 0">
