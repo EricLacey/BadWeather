@@ -67,7 +67,7 @@
 
             <!-- CAMERA -->
             <a-entity id="rig" movement-controls="constrainToNavMesh:true" nav-agent></a-entity>
-            <a-entity position="0 1.7 0 " camera look-controls="pointerLockEnabled:false" wasd-controls="fly:false; acceleration:150"> 
+            <a-entity id="playerRig" position="0 1.7 0 " camera look-controls="pointerLockEnabled:false" wasd-controls="fly:false; acceleration:150"> 
                 <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                           raycaster="far:10; interval:100; objects:.clickable"></a-entity>
             </a-entity>
@@ -375,5 +375,38 @@
             </a-entity>         
 
         </a-scene>
+
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            let socket = io();
+
+            //default connect event
+            socket.on('connect', function() {
+                console.log("connected!");
+            });
+
+            socket.on("imageToStudent", function(data){
+
+                console.log("request recieved!")
+
+                newObject = document.createElement("a-plane")
+                newObject.setAttribute("src", data)
+                newObject.setAttribute("position", "-0.3 1 -0.5")
+                newObject.setAttribute("height", "0.2")
+                newObject.setAttribute("width", "0.2")
+                newObject.setAttribute("material", "color:none; side:double")
+
+                document.getElementById("playerRig").appendChild(newObject)
+                //document.getElementById("testObject").src = data
+            })
+
+            function sendXY(){
+                let position = {x: document.getElementById("playerRig").getAttribute("position").x, y: document.getElementById("playerRig").getAttribute("position").z}
+                socket.emit("xy", position)
+            }
+
+            let locationSend = setInterval(sendXY, 100)
+        </script>
     </body>
 </html>

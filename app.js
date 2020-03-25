@@ -36,6 +36,9 @@ socketIO.on('connection', function(socket) {
     socket.on("ImageToSocket", function(data){
         socketIO.sockets.emit("imageToStudent", data)
     });
+    socket.on("xy", function(data){
+        socketIO.sockets.emit("xyToProfessor", data)
+    });
 
 
 });
