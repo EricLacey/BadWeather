@@ -5,12 +5,19 @@
     <script type="text/javascript" src="assets/js/canvasSketchCode.js"></script>
     <script type="text/javascript" src="assets/js/mapCode.js"></script></head>
 
-<body onload="InitSketch(); timer();">
+<body onload="firstTimer()">
+    <!------------------------ HELP!!!!! MAP BELOW DOESN'T LOAD YET... ----------------------->
+    <img id="mapImage" src="assets/userInterface/mazelayout.png" alt="maze background" style="display:none">
+    <!---------------------------------------------------------------------------------------->
 
-    <img id="mapImage" src="assets/textures/mazelayout.png" alt="maze background" style="display:none">
+    <!-- TARGET ARTIFACT APPEARS SCREEN -->
+    <div id="artifactAppears" align="center" style="display:block">
+        
+        <div id="firstTimer">timer</div>
+    </div>
 
-    <div id="drawingApp" align="center">
-
+    <!-- DRAWING SCREEN -->
+    <div id="drawingApp" align="center" style="display:none">
         <canvas id="myCanvas" width="300" height="300" style="border:2px solid black"></canvas>
         <img id=canvasImg src="" style="border:2px solid black; display:none">
         <br /><br />
@@ -31,75 +38,102 @@
             <option value="yellow">yellow</option>
             <option value="gray">gray</option>
         </select>
-        <div id="timer">timer</div>
-        
+        <div id="secondTimer">timer</div>
     </div>
 
+    <!-- MAP SCREEN (STUDENT POSITION + HOT/COLD) -->
     <div id="mapDiv" align="center" style="display:none">
         <canvas id="mapCanvas" width="300" height="300" style="border:2px solid black"></canvas>
-        <div><button>Hot</button>
-            <button>Cold</button></div>
-        
+        <div>
+            <button>Hot</button>
+            <button>Cold</button>
+        </div>
     </div>
 
+    <!-- SOCKET EVENTS -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io();
 
-        <script src="/socket.io/socket.io.js"></script>
-        <script>
-            let socket = io();
+        //default connect event
+        socket.on('connect', function() {
+            console.log("connected!");
+        });
 
-            //default connect event
-            socket.on('connect', function() {
-                console.log("connected!");
-            });
+        socket.on("xyToProfessor", function(data){
+            console.log("(" + data.x + ", " + data.y + ")")
+            DrawMap(data.x * 9, data.y * 9)
+        })
 
-            socket.on("xyToProfessor", function(data){
-                console.log("(" + data.x + ", " + data.y + ")")
-                DrawMap(data.x * 9, data.y * 9)
-            })
+        //TIMER FOR PROFESSOR PLAYER TO MEMORIZE ARTIFACT
+        function firstTimer() {
+            // Set the date we're counting down to
+            let secs = 10;
+            let now = new Date().getTime();
+            let endTime = new Date().setTime(now + (secs * 1000))
 
-            function timer() {
-                // Set the date we're counting down to
-                let secs = 3;
-                let now = new Date().getTime();
-                let endTime = new Date().setTime(now + (secs * 1000))
+            // Update the count down every 1 second
+            var x = setInterval(function() {
 
-                // Update the count down every 1 second
-                var x = setInterval(function() {
+                // Get today's date and time
+                now = new Date().getTime();
 
-                    // Get today's date and time
-                    now = new Date().getTime();
+                // Find the distance between now and the count down date
+                var distance = endTime - now;
 
-                    // Find the distance between now and the count down date
-                    var distance = endTime - now;
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("firstTimer").innerHTML = seconds + "s ";
 
-                    // Display the result in the element with id="demo"
-                    document.getElementById("timer").innerHTML = seconds + "s ";
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("firstTimer").innerHTML = "Done!";
+                    document.getElementById('artifactAppears').setAttribute("style", "display:none")
+                    document.getElementById('drawingApp').setAttribute("style", "display:block")
+                    InitSketch();
+                    secondTimer();
+                }
+            }, 500);
+        }
 
-                    // If the count down is finished, write some text
-                    if (distance < 0) {
-                        clearInterval(x);
-                        document.getElementById("timer").innerHTML = "Done!";
+        //TIMER FOR PROFESSOR PLAYER TO DRAW 
+        function secondTimer() {
+            // Set the date we're counting down to
+            let secs = 10;
+            let now = new Date().getTime();
+            let endTime = new Date().setTime(now + (secs * 1000))
+
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+
+                // Get today's date and time
+                now = new Date().getTime();
+
+                // Find the distance between now and the count down date
+                var distance = endTime - now;
+
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("secondTimer").innerHTML = seconds + "s ";
+
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("secondTimer").innerHTML = "Done!";
                         
-                        // save canvas image as data url (png format by default)
-                        var canvas = document.getElementById('myCanvas')
-                        var dataURL = canvas.toDataURL();
+                    // save canvas image as data url (png format by default)
+                    var canvas = document.getElementById('myCanvas')
+                    var dataURL = canvas.toDataURL();
 
-                        socket.emit("ImageToSocket", dataURL)
+                    socket.emit("ImageToSocket", dataURL)
 
-                        //document.getElementById('canvasImg').src = dataURL;
-                        //document.getElementById("canvasImg").setAttribute("style", "border:2px solid black; display:inline")
-                        //document.getElementById("myCanvas").setAttribute("style", "display:none")
-
-                        document.getElementById('drawingApp').setAttribute("style", "display:none")
-                        document.getElementById('mapDiv').setAttribute("style", "display:block")
-                        InitMap();
-                        
-                    }
-                }, 500);
-            }
-        </script>
-
+                    document.getElementById('drawingApp').setAttribute("style", "display:none")
+                    document.getElementById('mapDiv').setAttribute("style", "display:block")
+                    InitMap();
+                }
+            }, 500);
+        }
+    </script>
 </body>
 </html>

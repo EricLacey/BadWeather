@@ -5,9 +5,7 @@ let mapImage
 
 function InitMap() {
     mapCTX = document.getElementById('mapCanvas').getContext("2d");
-
     console.log("Initialized map")
-
 }
 
 function DrawMap(x,y) {
@@ -21,8 +19,5 @@ function DrawMap(x,y) {
     mapCTX.arc(x + mapCTX.canvas.width/2, y + mapCTX.canvas.height/2, 5, 0, 2 * Math.PI);
     mapCTX.stroke();
     mapCTX.closePath();
-
-    
-
 }
 

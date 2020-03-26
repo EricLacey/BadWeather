@@ -56,6 +56,8 @@
                 <a-asset-item crossorigin="anonymous" id="moai3" src="assets/models/moai/3/moai3.obj"></a-asset-item>
                 <img id="moai3img" src="/assets/models/moai/3/moai3_2D.png">
 
+                <!-- Background music -->
+                <audio id="music" src="/assets/audio/backgroundSong.mp3" preload="auto"></audio>
             </a-assets>
 
             <!-- MIXINS -->
@@ -69,7 +71,10 @@
             <a-entity id="rig" movement-controls="constrainToNavMesh:true" nav-agent></a-entity>
             <a-entity id="playerRig" position="0 1.7 0 " camera look-controls="pointerLockEnabled:false" wasd-controls="fly:false; acceleration:150"> 
                 <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
-                          raycaster="far:10; interval:100; objects:.clickable"></a-entity>
+                          raycaster="far:10; interval:100; objects:.clickable">
+                </a-entity>
+                <!-- BACKGROUND MUSIC, parented to camera so same loudness throughout: https://joshondesign.com/2017/07/24/aframe_tips -->
+                <a-sound src="url(/assets/audio/backgroundSong.mp3)" autoplay="true" position="0 0 0" loop="true" volume="0.55"></a-sound>
             </a-entity>
 
             <!-- ROOM -->
