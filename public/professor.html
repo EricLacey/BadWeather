@@ -6,6 +6,9 @@
     <script type="text/javascript" src="assets/js/mapCode.js"></script>
 
     <style>
+        body{
+            background-color: #D1C89D;
+        }
         #btnC, #btnH{
             background-color:black;
             opacity: 0.5;
@@ -33,7 +36,14 @@
             opacity: 1;
             box-shadow: none;
         }
-
+        #instructions{
+            margin: 20px;
+            font-size: 20px;
+            font-family: 'PT Sans', sans-serif;
+        }
+        #artifactHint{
+            width:55% 
+        }
     </style>
 </head>
 
@@ -44,8 +54,9 @@
 
     <!-- TARGET ARTIFACT APPEARS SCREEN -->
     <div id="artifactAppears" align="center" style="display:block">
-        
+        <p id="instructions">Try to remember this artifact! Time left:</p>
         <div id="firstTimer">timer</div>
+        <img src="assets/userInterface/paper01.png" id="artifactHint" alt="Image of an artifact here"/>
     </div>
 
     <!-- DRAWING SCREEN -->
@@ -132,7 +143,7 @@
         //TIMER FOR PROFESSOR PLAYER TO DRAW 
         function secondTimer() {
             // Set the date we're counting down to
-            let secs = 10;
+            let secs = 20;
             let now = new Date().getTime();
             let endTime = new Date().setTime(now + (secs * 1000))
 
