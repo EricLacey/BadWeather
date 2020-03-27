@@ -68,11 +68,12 @@
             <a-mixin id="cabinet_v2_mix" obj-model="obj:#cabinet_v2" material="src:#cabinet_img" scale="0.2 0.2 0.2"></a-mixin>
 
             <!-- CAMERA -->
-            <a-entity id="rig" movement-controls="constrainToNavMesh:true" nav-agent></a-entity>
+            <a-entity id="rig" movement-controls="constrainToNavMesh:true" nav-agent></a-entity> 
             <a-entity id="playerRig" position="0 1.7 0 " camera look-controls="pointerLockEnabled:false" wasd-controls="fly:false; acceleration:150"> 
                 <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                           raycaster="far:10; interval:100; objects:.clickable">
                 </a-entity>
+            <a-entity id="tempTube" geometry="primitive: cylinder; openEnded: true ; radius:0.5; height:0.8" rotation="90 0 0" material="side:double; transparent:true; opacity:0; visible:false"></a-entity>
                 <!-- BACKGROUND MUSIC, parented to camera so same loudness throughout: https://joshondesign.com/2017/07/24/aframe_tips -->
                 <a-sound src="url(/assets/audio/backgroundSong.mp3)" autoplay="true" position="0 0 0" loop="true" volume="0.55"></a-sound>
             </a-entity>
@@ -405,12 +406,44 @@
                 document.getElementById("playerRig").appendChild(newObject)
             })
 
+            //hot cold 
             socket.on("hotToStudent", function(){
                 console.log("hot")
+                document.getElementById("tempTube").setAttribute("material", "color:red")
+                tempTubeOpacity()
+
             })
             socket.on("coldToStudent", function(){
                 console.log("cold")
+                document.getElementById("tempTube").setAttribute("material", "color:blue")
+                tempTubeOpacity()
             })
+
+            //increase and decrease opacity
+            function tempTubeOpacity(){
+                let opacity = 0.0
+                let turningOpaque = true
+                let increase = 0.05
+                let intervalDur = 50
+                let maxOpacity = 0.6
+
+                document.getElementById("tempTube").setAttribute("material", "visible:true")
+                let tubeFade = setInterval(function(){
+                    if (turningOpaque == true){
+                        opacity += increase
+                    }else{
+                        opacity -= increase
+                    }
+                    document.getElementById("tempTube").setAttribute("material", "opacity:" + opacity)
+                    
+                    if (opacity >= maxOpacity){
+                        turningOpaque = false
+                    } else if (opacity <= 0){
+                        document.getElementById("tempTube").setAttribute("material", "visible:false")
+                        clearInterval(tubeFade)
+                    }
+                }, intervalDur)
+            }
 
             //send the xy coordinates
             function sendXY(){
