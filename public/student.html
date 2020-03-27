@@ -390,22 +390,29 @@
             socket.on('connect', function() {
                 console.log("connected!");
             });
-
+            //spawn object with texture from drawing
             socket.on("imageToStudent", function(data){
 
                 console.log("request recieved!")
 
                 newObject = document.createElement("a-plane")
                 newObject.setAttribute("src", data)
-                newObject.setAttribute("position", "-0.3 1 -0.5")
+                newObject.setAttribute("position", "-0.3 1.2 -0.5")
                 newObject.setAttribute("height", "0.2")
                 newObject.setAttribute("width", "0.2")
                 newObject.setAttribute("material", "color:none; side:double")
 
                 document.getElementById("playerRig").appendChild(newObject)
-                //document.getElementById("testObject").src = data
             })
 
+            socket.on("hotToStudent", function(){
+                console.log("hot")
+            })
+            socket.on("coldToStudent", function(){
+                console.log("cold")
+            })
+
+            //send the xy coordinates
             function sendXY(){
                 let position = {x: document.getElementById("playerRig").getAttribute("position").x, y: document.getElementById("playerRig").getAttribute("position").z}
                 socket.emit("xy", position)

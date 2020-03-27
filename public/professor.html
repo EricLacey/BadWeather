@@ -88,8 +88,8 @@
     <div id="mapDiv" align="center" style="display:none">
         <canvas id="mapCanvas" width="300" height="300" style="border:2px solid black"></canvas>
         <div>
-            <button id="btnH">Hot</button>
-            <button id="btnC">Cold</button>
+            <button id="btnH" onclick="hotClick()">Hot</button>
+            <button id="btnC" onclick="coldClick()">Cold</button>
         </div>
     </div>
 
@@ -177,6 +177,18 @@
                 }
             }, 500);
         }
+
+        //HOT AND COLD BUTTONS
+        function hotClick(){
+            console.log("hot sent")
+            socket.emit("hotToSocket")
+        }
+        function coldClick(){
+            console.log("cold sent")
+            socket.emit("coldToSocket")
+        }
+
+
     </script>
 </body>
 </html>
