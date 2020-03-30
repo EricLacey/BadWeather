@@ -4,6 +4,14 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="assets/js/canvasSketchCode.js"></script>
     <script type="text/javascript" src="assets/js/mapCode.js"></script>
+    <script type="text/javascript" src="assets/js/randomArtifact.js"></script>
+    <script>
+        //https://stackoverflow.com/questions/10122555/loading-javascript-in-body-onload-with-2-functions
+        function start() {
+            firstTimer();
+            randomizeArtifacts();
+        }
+    </script>
 
     <style>
         body{
@@ -42,21 +50,22 @@
             font-family: 'PT Sans', sans-serif;
         }
         #artifactHint{
-            width:55% 
+            width:55%;
         }
     </style>
 </head>
 
-<body onload="firstTimer()">
-    <!------------------------ HELP!!!!! MAP BELOW DOESN'T LOAD YET... ----------------------->
+<body onload="start()">
     <img id="mapImage" src="assets/userInterface/mazelayout.png" alt="maze background" style="display:none">
-    <!---------------------------------------------------------------------------------------->
 
     <!-- TARGET ARTIFACT APPEARS SCREEN -->
     <div id="artifactAppears" align="center" style="display:block">
-        <p id="instructions">Try to remember this artifact! Time left:</p>
+        <p id="instructions">Remember this artifact!</p>
+        <p id="instructions">Time left:</p>
         <div id="firstTimer">timer</div>
-        <img src="assets/userInterface/paper01.png" id="artifactHint" alt="Image of an artifact here"/>
+        <div id="artifactHint">TEST</div>
+
+        <!-- <img src="assets/userInterface/paper01.png" id="artifactHint" alt="Image of an artifact here"/> -->
     </div>
 
     <!-- DRAWING SCREEN -->
