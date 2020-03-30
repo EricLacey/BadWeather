@@ -11,5 +11,5 @@ randomArtifact[5] = 'paper06.png';
 function randomizeArtifacts() {
     var num = Math.floor( Math.random() * 6);
     var img = randomArtifact[num];
-    document.getElementById("artifactHint").innerHTML = ('<img src="' + 'assets/userInterface/' + img)
+    document.getElementById("artifactHint").innerHTML = ('<img src="' + 'assets/userInterface/' + img + '" width="600px">')
 }
