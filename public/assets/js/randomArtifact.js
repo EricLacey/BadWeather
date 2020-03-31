@@ -3,19 +3,24 @@
 
 //objects
 const anubis = {
-    'imageName': '1.png'
+    'imageName': '1.png',
+    'artifactName': 'anubis'
 }
 const horus = {
-    'imageName': '2.png'
+    'imageName': '2.png',
+    'artifactName': 'horus'
 }
 const isis = {
-    'imageName': '3.png'
+    'imageName': '3.png',
+    'artifactName': 'isis'
 }
 const whalehat = {
-    'imageName': '4.png'
+    'imageName': '4.png',
+    'artifactName': 'whalehat'
 }
 const moai = {
-    'imageName': '5.png'
+    'imageName': '5.png',
+    'artifactName': 'moai'
 }
 
 //array of objects
