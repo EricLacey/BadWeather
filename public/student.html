@@ -14,9 +14,6 @@
     <body>
         <!-- renderer stuff  -->
         <a-scene renderer="antialias: true; logarithmicDepthBuffer: true; colorManagement: true" inspector-plugin-recast> <!-- stats -->
-            <!-- TIMER -->
-            <a-entity id="timer" timer="timerTime:5; DigitsColor:red" position="0 1.5 -5"></a-entity>
-
             <a-assets timeout="3000">
                 <!-- SHELVES -->
                 <img id="shelf_v81_img" src="/assets/models/shelves_v8/phong29SG_2D_View.png">
@@ -81,9 +78,11 @@
                 <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                           raycaster="far:10; interval:100; objects:.clickable">
                 </a-entity>
-            <a-entity id="tempTube" geometry="primitive: cylinder; openEnded: true ; radius:0.5; height:0.8" rotation="90 0 0" material="side:double; transparent:true; opacity:0; visible:false"></a-entity>
+                <a-entity id="tempTube" geometry="primitive: cylinder; openEnded: true ; radius:0.5; height:0.8" rotation="90 0 0" material="side:double; transparent:true; opacity:0; visible:false"></a-entity>
                 <!-- BACKGROUND MUSIC, parented to camera so same loudness throughout: https://joshondesign.com/2017/07/24/aframe_tips -->
                 <a-sound src="url(/assets/audio/backgroundSong.mp3)" autoplay="true" position="0 0 0" loop="true" volume="0.55"></a-sound>
+                <!-- TIMER -->
+                <a-entity id="timer" timer="timerTime:5; DigitsColor:red" position="0 3 -6"></a-entity>
             </a-entity>
 
             <!-- ROOM -->
