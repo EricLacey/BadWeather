@@ -3,7 +3,7 @@
     <head>
         <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
-        <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
     </head>
 
     <body>
@@ -22,11 +22,9 @@
 
                 <!-- ROOM -->
                 <a-asset-item crossorigin="anonymous" id="wc_gltf" src="assets/models/wc2/wc_autosave_1.gltf"></a-asset-item>
-                <!-- <a-asset-item crossorigin="anonymous" id="wc" src="assets/models/wc/wc.obj"></a-asset-item>
-                <img id="wc_img" src="/assets/models/wc/wc_img_2D_View.png"> -->
                 <img id="floorimg" src="/assets/models/floor_concrete.png">
                 <a-asset-item crossorigin="anonymous" id="floor" src="assets/models/floor.obj"></a-asset-item>
-                <a-asset-item crossorigin="anonymous" id="navmesh" src="assets/models/navmesh2.obj"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="navmesh" src="assets/models/navmesh2.gltf"></a-asset-item>
 
                 <!-- CABINETS -->
                 <a-asset-item crossorigin="anonymous" id="cabinet_small" src="/assets/models/cabinets/cabinet_small.obj"></a-asset-item>
@@ -68,21 +66,20 @@
             <a-mixin id="cabinet_v2_mix" obj-model="obj:#cabinet_v2" material="src:#cabinet_img" scale="0.2 0.2 0.2"></a-mixin>
 
             <!-- CAMERA -->
-            <a-entity id="rig" movement-controls="constrainToNavMesh:true" nav-agent></a-entity> 
-            <a-entity id="playerRig" position="0 1.7 0 " camera look-controls="pointerLockEnabled:false" wasd-controls="fly:false; acceleration:150"> 
-                <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
-                          raycaster="far:10; interval:100; objects:.clickable">
+            <a-entity id="rig" movement-controls="constrainToNavMesh:true; controls:keyboard">
+                <a-entity camera position="0 1.7 0 " look-controls="pointerLockEnabled:false"> 
+                    <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
+                            raycaster="far:10; interval:100; objects:.clickable"></a-entity>
                 </a-entity>
-            <a-entity id="tempTube" geometry="primitive: cylinder; openEnded: true ; radius:0.5; height:0.8" rotation="90 0 0" material="side:double; transparent:true; opacity:0; visible:false"></a-entity>
+                <a-entity id="tempTube" geometry="primitive: cylinder; openEnded: true ; radius:0.5; height:0.8" rotation="90 0 0" material="side:double; transparent:true; opacity:0; visible:false"></a-entity>
                 <!-- BACKGROUND MUSIC, parented to camera so same loudness throughout: https://joshondesign.com/2017/07/24/aframe_tips -->
                 <a-sound src="url(/assets/audio/backgroundSong.mp3)" autoplay="true" position="0 0 0" loop="true" volume="0.55"></a-sound>
             </a-entity>
 
             <!-- ROOM -->
             <a-entity id="wc" gltf-model="#wc_gltf" scale="0.2 0.2 0.2" rotation="0 0 0"></a-entity>
-            <!-- <a-entity obj-model="obj:#wc" material="src:#wc_img" scale="0.2 0.2 0.2" rotation="0 0 0"></a-entity> -->
             <a-entity obj-model="obj:#floor" material="src:#floorimg" scale="0.2 0.2 0.2" rotation="0 180 0"></a-entity>
-            <!-- <a-entity obj-model="obj:#navmesh" material="color:red" scale="0.2 0.2 0.2" rotation="0 0 0" position="0 0 0" nav-mesh ></a-entity> -->
+            <a-entity gltf-model="#navmesh" scale="0.2 0.2 0.2" rotation="0 0 0" position="0 0 0" nav-mesh visible="false"></a-entity>
 
             <!-- COLUMNS : commented columns are for rooms/origin -->
             <a-entity id="column-group">
@@ -381,7 +378,6 @@
             </a-entity>         
 
         </a-scene>
-
 
         <script src="/socket.io/socket.io.js"></script>
         <script>
