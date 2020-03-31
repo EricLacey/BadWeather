@@ -61,7 +61,7 @@
 
     <!-- DRAWING SCREEN -->
     <div id="drawingApp" align="center" style="display:none">
-        <canvas id="myCanvas" width="300" height="300" style="border:2px solid black"></canvas>
+        <canvas id="myCanvas" width="600" height="600" style="border:2px solid black"></canvas>
         <img id=canvasImg src="" style="border:2px solid black; display:none">
         <br /><br />
         <button onclick="javascript:clearArea();return false;">Clear Area</button>
@@ -86,7 +86,7 @@
 
     <!-- MAP SCREEN (STUDENT POSITION + HOT/COLD) -->
     <div id="mapDiv" align="center" style="display:none">
-        <canvas id="mapCanvas" width="300" height="300" style="border:2px solid black"></canvas>
+        <canvas id="mapCanvas" width="600" height="600" style="border:2px solid black"></canvas>
         <div>
             <button id="btnH" onclick="hotClick()">Hot</button>
             <button id="btnC" onclick="coldClick()">Cold</button>
@@ -105,7 +105,7 @@
 
         socket.on("xyToProfessor", function(data){
             console.log("(" + data.x + ", " + data.y + ")")
-            DrawMap(data.x * 9, data.y * 9)
+            DrawMap(data.x * 18, data.y * 18)
         })
 
         //TIMER FOR PROFESSOR PLAYER TO MEMORIZE ARTIFACT
