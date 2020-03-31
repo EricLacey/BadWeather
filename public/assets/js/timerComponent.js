@@ -3,87 +3,87 @@
 AFRAME.registerComponent('timer', {
 
   schema: {
-    TimeOutTime: {type: 'int', default: 60 }, //LENGTH OF TIMER
-    DigitsColor: {type: 'color', default: '#000"'},
+    timerDuration: {type: 'int', default: 60}, //LENGTH OF TIMER
+    timerColor: {type: 'color', default: '#000"'},
   },
 
   init: function () {
     var data = this.data;
     var el = this.el;
     var date= new Date(); 
-    this.TargetTime=new Date(date.getTime() + data.TimeOutTime*1000);
-       
-    seconds = new THREE.Object3D();
-    seconds.name="seconds"
+    this.TargetTime=new Date(date.getTime() + data.timerDuration*1000);
+    
+    secs = new THREE.Object3D();
+    secs.name="secs"
     for(var j=0;j<2;j++) {
       distance = -j*0.25;
       parent1 = new THREE.Object3D();
       var SecGeo = new THREE.BoxGeometry( 0.025, 0.1, 0.3 );
-      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.DigitsColor} );
+      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.timerColor} );
       var mesh1 = new THREE.Mesh( SecGeo, SecMaterial);
       parent1.add(mesh1);
       parent1.position.x-=distance;
       parent1.position.y+=0.07;
-      seconds.add(parent1);
+      secs.add(parent1);
       
       parent2 = new THREE.Object3D();
       var SecGeo = new THREE.BoxGeometry( 0.025, 0.1, 0.3 );
-      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.DigitsColor} );
+      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.timerColor} );
       var mesh1 = new THREE.Mesh( SecGeo, SecMaterial);
       parent2.add(mesh1);
       parent2.rotateZ(Math.PI/2);
       parent2.position.x-=(distance - 0.08);
       parent2.position.y+=0.14;
-      seconds.add(parent2);
+      secs.add(parent2);
   
       parent3 = new THREE.Object3D();
       var SecGeo = new THREE.BoxGeometry( 0.025, 0.1, 0.3 );
-      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.DigitsColor} );
+      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.timerColor} );
       var mesh1 = new THREE.Mesh( SecGeo, SecMaterial);
       parent3.add(mesh1);
       parent3.position.x-=(distance - 0.16);
       parent3.position.y+=0.07;
-      seconds.add(parent3);
+      secs.add(parent3);
   
       parent4 = new THREE.Object3D();
       var SecGeo = new THREE.BoxGeometry( 0.025, 0.1, 0.3);
-      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.DigitsColor} );
+      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.timerColor} );
       var mesh1 = new THREE.Mesh( SecGeo, SecMaterial );
       parent4.add(mesh1);
       parent4.rotateZ(Math.PI/2);
       parent4.position.x-=(distance - 0.08);   
-      seconds.add(parent4);
+      secs.add(parent4);
   
       parent5 = new THREE.Object3D();
       var SecGeo = new THREE.BoxGeometry( 0.025, 0.1, 0.2 );
-      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.DigitsColor} );
+      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.timerColor} );
       var mesh1 = new THREE.Mesh( SecGeo, SecMaterial );
       parent5.add(mesh1);
       parent5.rotateZ(Math.PI/2);
       parent5.position.x-=(distance - 0.08);
       parent5.position.y-=0.14;    
-      seconds.add(parent5);
+      secs.add(parent5);
   
       parent6 = new THREE.Object3D();
       var SecGeo = new THREE.BoxGeometry( 0.025, 0.1, 0.2 );
-      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.DigitsColor} );
+      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.timerColor} );
       var mesh1 = new THREE.Mesh( SecGeo, SecMaterial );
       parent6.add(mesh1);
       parent6.position.x-=(distance - 0.16);
       parent6.position.y-=0.07;
        
-      seconds.add(parent6);
+      secs.add(parent6);
   
       parent7 = new THREE.Object3D();
       var SecGeo = new THREE.BoxGeometry( 0.025, 0.1, 0.2 );
-      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.DigitsColor} );
+      var SecMaterial = new THREE.MeshBasicMaterial( {color: this.data.timerColor} );
       var mesh1 = new THREE.Mesh( SecGeo, SecMaterial );
       parent7.add(mesh1);
       parent7.position.x-=distance;
       parent7.position.y-=0.07;
-      seconds.add(parent7);
+      secs.add(parent7);
     }
-    el.setObject3D('TimerMesh', seconds); 
+    el.setObject3D('TimerMesh', secs); 
   },
   
   tick: function() {
@@ -91,7 +91,7 @@ AFRAME.registerComponent('timer', {
       this.GetTimeLeft();
       this.Setdigit();
       if(this.seconda==0) {
-        this.TimeUp();
+        this.timerDone();
       }
     }  
   },
@@ -101,20 +101,20 @@ AFRAME.registerComponent('timer', {
     var tensPlace = Math.floor(this.seconda/10); 
     for(var a=0;a<7;a++) { 
       if(digitval[tensPlace][a]==1)
-        seconds.children[a].visible=true;
+        secs.children[a].visible=true;
       else
-        seconds.children[a].visible=false;
+        secs.children[a].visible=false;
     }
     var onesPlace = this.seconda%10;
     for(var i=7;i<14;i++) { 
       if(digitval[onesPlace][i-7]==1)
-        seconds.children[i].visible=true;
+        secs.children[i].visible=true;
       else
-        seconds.children[i].visible=false;
+        secs.children[i].visible=false;
     }
   },
 
-  TimeUp: function(){
+  timerDone: function(){
     alert("You ran out of time to find the artifact.");
   },
 
@@ -134,10 +134,8 @@ AFRAME.registerComponent('timer', {
         
       this.minutea = parseInt(timeRemaining / 60);
       timeRemaining = (timeRemaining % 60);
-      console.log("timeRemaining "+ timeRemaining);
        
       this.seconda = parseInt(timeRemaining);
-      console.log("days :"+days+" hours :"+this.houra+" minutes :"+this.minutea+" seconds :"+this.seconda);
     }
   },
 
@@ -148,10 +146,10 @@ AFRAME.registerComponent('timer', {
     if (Object.keys(oldData).length === 0)
       return;
 
-    console.log("update "+ data.DigitsColor);
-    if (data.DigitsColor !== oldData.DigitsColor) {
-      console.log(" update "+ seconds.children[1].isObject3D+" "+ data.DigitsColor.toString(16).slice(-6) );
-      var col= "0x"+data.DigitsColor.toString(16).slice(-6);
+    console.log("update "+ data.timerColor);
+    if (data.timerColor !== oldData.timerColor) {
+      console.log(" update "+ secs.children[1].isObject3D+" "+ data.timerColor.toString(16).slice(-6) );
+      var col= "0x"+data.timerColor.toString(16).slice(-6);
       for(var i=0;i<14;i++) {
         el.object3D.children[0].children[i].children[0].material.color.setHex(col);
       }
