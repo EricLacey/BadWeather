@@ -1,10 +1,66 @@
 <!DOCTYPE html>
 <html>
-<head></head>
-<body onload="InitThis(); timer();">
+<head>    
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="assets/js/canvasCode.js"></script>
-    <div align="center">
+    <script type="text/javascript" src="assets/js/canvasSketchCode.js"></script>
+    <script type="text/javascript" src="assets/js/mapCode.js"></script>
+
+    <style>
+        body{
+            background-color: #D1C89D;
+        }
+        #btnC, #btnH{
+            background-color:black;
+            opacity: 0.5;
+            border: none;
+            color: #D1C89D;
+            text-align: center;
+            text-decoration: none;
+            width: 150px;
+            height: 40px;
+            font-size: 30px;
+            font-family: 'PT Sans', sans-serif;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.472), 0 17px 50px 0 rgba(0,0,0,0.19);
+            /* to determine speed of the "hover" effect. */
+            transition-duration: 0.4s;
+        }
+        #btnC:hover{
+            background-color: #3c89d0;
+            color: #082284;
+            opacity: 1;
+            box-shadow: none;
+        }
+        #btnH:hover{
+            background-color: #ff3333;
+            color: #990000;
+            opacity: 1;
+            box-shadow: none;
+        }
+        #instructions{
+            margin: 20px;
+            font-size: 20px;
+            font-family: 'PT Sans', sans-serif;
+        }
+        #artifactHint{
+            width:55% 
+        }
+    </style>
+</head>
+
+<body onload="firstTimer()">
+    <!------------------------ HELP!!!!! MAP BELOW DOESN'T LOAD YET... ----------------------->
+    <img id="mapImage" src="assets/userInterface/mazelayout.png" alt="maze background" style="display:none">
+    <!---------------------------------------------------------------------------------------->
+
+    <!-- TARGET ARTIFACT APPEARS SCREEN -->
+    <div id="artifactAppears" align="center" style="display:block">
+        <p id="instructions">Try to remember this artifact! Time left:</p>
+        <div id="firstTimer">timer</div>
+        <img src="assets/userInterface/paper01.png" id="artifactHint" alt="Image of an artifact here"/>
+    </div>
+
+    <!-- DRAWING SCREEN -->
+    <div id="drawingApp" align="center" style="display:none">
         <canvas id="myCanvas" width="300" height="300" style="border:2px solid black"></canvas>
         <img id=canvasImg src="" style="border:2px solid black; display:none">
         <br /><br />
@@ -25,59 +81,114 @@
             <option value="yellow">yellow</option>
             <option value="gray">gray</option>
         </select>
-        <div id="timer">test timer</div>
-        
+        <div id="secondTimer">timer</div>
     </div>
 
-        <script src="/socket.io/socket.io.js"></script>
-        <script>
-            let socket = io();
+    <!-- MAP SCREEN (STUDENT POSITION + HOT/COLD) -->
+    <div id="mapDiv" align="center" style="display:none">
+        <canvas id="mapCanvas" width="300" height="300" style="border:2px solid black"></canvas>
+        <div>
+            <button id="btnH" onclick="hotClick()">Hot</button>
+            <button id="btnC" onclick="coldClick()">Cold</button>
+        </div>
+    </div>
 
-            //default connect event
-            socket.on('connect', function() {
-                console.log("connected!");
-            });
+    <!-- SOCKET EVENTS -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io();
 
-            function timer() {
-                // Set the date we're counting down to
-                let secs = 3;
-                let now = new Date().getTime();
-                let endTime = new Date().setTime(now + (secs * 1000))
+        //default connect event
+        socket.on('connect', function() {
+            console.log("connected!");
+        });
 
-                // Update the count down every 1 second
-                var x = setInterval(function() {
+        socket.on("xyToProfessor", function(data){
+            console.log("(" + data.x + ", " + data.y + ")")
+            DrawMap(data.x * 9, data.y * 9)
+        })
 
-                    // Get today's date and time
-                    now = new Date().getTime();
+        //TIMER FOR PROFESSOR PLAYER TO MEMORIZE ARTIFACT
+        function firstTimer() {
+            // Set the date we're counting down to
+            let secs = 10;
+            let now = new Date().getTime();
+            let endTime = new Date().setTime(now + (secs * 1000))
 
-                    // Find the distance between now and the count down date
-                    var distance = endTime - now;
+            // Update the count down every 1 second
+            var x = setInterval(function() {
 
-                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                // Get today's date and time
+                now = new Date().getTime();
 
-                    // Display the result in the element with id="demo"
-                    document.getElementById("timer").innerHTML = seconds + "s ";
+                // Find the distance between now and the count down date
+                var distance = endTime - now;
 
-                    // If the count down is finished, write some text
-                    if (distance < 0) {
-                        clearInterval(x);
-                        document.getElementById("timer").innerHTML = "Done!";
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("firstTimer").innerHTML = seconds + "s ";
+
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("firstTimer").innerHTML = "Done!";
+                    document.getElementById('artifactAppears').setAttribute("style", "display:none")
+                    document.getElementById('drawingApp').setAttribute("style", "display:block")
+                    InitSketch();
+                    secondTimer();
+                }
+            }, 500);
+        }
+
+        //TIMER FOR PROFESSOR PLAYER TO DRAW 
+        function secondTimer() {
+            // Set the date we're counting down to
+            let secs = 20;
+            let now = new Date().getTime();
+            let endTime = new Date().setTime(now + (secs * 1000))
+
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+
+                // Get today's date and time
+                now = new Date().getTime();
+
+                // Find the distance between now and the count down date
+                var distance = endTime - now;
+
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("secondTimer").innerHTML = seconds + "s ";
+
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("secondTimer").innerHTML = "Done!";
                         
-                        // save canvas image as data url (png format by default)
-                        var canvas = document.getElementById('myCanvas')
-                        var dataURL = canvas.toDataURL();
+                    // save canvas image as data url (png format by default)
+                    var canvas = document.getElementById('myCanvas')
+                    var dataURL = canvas.toDataURL();
 
-                        socket.emit("ImageToSocket", dataURL)
+                    socket.emit("ImageToSocket", dataURL)
 
-                        document.getElementById('canvasImg').src = dataURL;
-                        document.getElementById("canvasImg").setAttribute("style", "border:2px solid black; display:inline")
-                        document.getElementById("myCanvas").setAttribute("style", "border:2px solid black; display:none")
+                    document.getElementById('drawingApp').setAttribute("style", "display:none")
+                    document.getElementById('mapDiv').setAttribute("style", "display:block")
+                    InitMap();
+                }
+            }, 500);
+        }
 
-                        
-                    }
-                }, 500);
-            }
-        </script>
+        //HOT AND COLD BUTTONS
+        function hotClick(){
+            console.log("hot sent")
+            socket.emit("hotToSocket")
+        }
+        function coldClick(){
+            console.log("cold sent")
+            socket.emit("coldToSocket")
+        }
 
+
+    </script>
 </body>
 </html>
