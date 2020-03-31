@@ -73,11 +73,12 @@
 
             <!-- CAMERA -->
             <a-entity id="rig" movement-controls="constrainToNavMesh:true; controls:keyboard">
-                <a-entity camera position="0 1.7 0 " look-controls="pointerLockEnabled:false"> 
+                <a-entity id="playerCam" camera position="0 1.7 0 " look-controls="pointerLockEnabled:false"> 
                     <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                             raycaster="far:10; interval:100; objects:.clickable"></a-entity>
-                </a-entity>
                 <a-entity id="tempTube" geometry="primitive: cylinder; openEnded: true ; radius:0.5; height:0.8" rotation="90 0 0" material="side:double; transparent:true; opacity:0; visible:false"></a-entity>
+                </a-entity>
+                
                 <!-- BACKGROUND MUSIC, parented to camera so same loudness throughout: https://joshondesign.com/2017/07/24/aframe_tips -->
                 <a-sound src="url(/assets/audio/backgroundSong.mp3)" autoplay="true" position="0 0 0" loop="true" volume="0.55"></a-sound>
                 <!-- TIMER -->
@@ -402,12 +403,13 @@
 
                 newObject = document.createElement("a-plane")
                 newObject.setAttribute("src", data)
-                newObject.setAttribute("position", "-0.3 1.2 -0.5")
+                newObject.setAttribute("position", "-0.45 0 -0.5")
+                newObject.setAttribute("rotation", "-20 20 0")
                 newObject.setAttribute("height", "0.2")
                 newObject.setAttribute("width", "0.2")
                 newObject.setAttribute("material", "color:none; side:double")
 
-                document.getElementById("playerRig").appendChild(newObject)
+                document.getElementById("playerCam").appendChild(newObject)
             })
 
             //hot cold 
@@ -451,7 +453,7 @@
 
             //send the xy coordinates
             function sendXY(){
-                let position = {x: document.getElementById("playerRig").getAttribute("position").x, y: document.getElementById("playerRig").getAttribute("position").z}
+                let position = {x: document.getElementById("rig").getAttribute("position").x, y: document.getElementById("rig").getAttribute("position").z}
                 socket.emit("xy", position)
             }
 
