@@ -3,6 +3,12 @@
     <head>
         <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+        <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+        
+        <!-- TIMER -->
+        <script type="text/javascript" src="assets/js/timerComponent.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
         <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
         <script src="assets/js/object-controller.js"></script>
@@ -78,6 +84,8 @@
                 
                 <!-- BACKGROUND MUSIC, parented to camera so same loudness throughout: https://joshondesign.com/2017/07/24/aframe_tips -->
                 <a-sound src="url(/assets/audio/backgroundSong.mp3)" autoplay="true" position="0 0 0" loop="true" volume="0.55"></a-sound>
+                <!-- TIMER -->
+                <a-entity id="timer" timer="timerDuration:60; timerColor:black" position="0 7 -8"></a-entity> <!-- timer position in frame -->
             </a-entity>
 
             <!-- ROOM -->
