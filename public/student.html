@@ -4,11 +4,14 @@
         <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+        <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+        <script src="assets/js/object-controller.js"></script>
+
     </head>
 
     <body>
         <!-- renderer stuff  -->
-        <a-scene renderer="antialias: true; logarithmicDepthBuffer: true; colorManagement: true" inspector-plugin-recast> <!-- stats -->
+        <a-scene id="scene" physics="debug:true" renderer="antialias: true; logarithmicDepthBuffer: true; colorManagement: true" inspector-plugin-recast> <!-- stats -->
             <a-assets timeout="3000">
                 <!-- SHELVES -->
                 <img id="shelf_v81_img" src="/assets/models/shelves_v8/phong29SG_2D_View.png">
@@ -66,8 +69,8 @@
             <a-mixin id="cabinet_v2_mix" obj-model="obj:#cabinet_v2" material="src:#cabinet_img" scale="0.2 0.2 0.2"></a-mixin>
 
             <!-- CAMERA -->
-            <a-entity id="rig" movement-controls="constrainToNavMesh:true; controls:keyboard">
-                <a-entity id="playerCam" camera position="0 1.7 0 " look-controls="pointerLockEnabled:false"> 
+            <a-entity id="rig"  movement-controls="constrainToNavMesh:true; controls:keyboard">
+                <a-entity id="playerCam" static-body camera position="0 1.7 0 " look-controls="pointerLockEnabled:false"> 
                     <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                             raycaster="far:10; interval:100; objects:.clickable"></a-entity>
                 <a-entity id="tempTube" geometry="primitive: cylinder; openEnded: true ; radius:0.5; height:0.8" rotation="90 0 0" material="side:double; transparent:true; opacity:0; visible:false"></a-entity>
@@ -80,6 +83,7 @@
             <!-- ROOM -->
             <a-entity id="wc" gltf-model="#wc_gltf" scale="0.2 0.2 0.2" rotation="0 0 0"></a-entity>
             <a-entity obj-model="obj:#floor" material="src:#floorimg" scale="0.2 0.2 0.2" rotation="0 180 0"></a-entity>
+            <a-entity static-body geometry="primitive:plane" rotation="90 0 0" scale="100 100 1"></a-entity>
             <a-entity gltf-model="#navmesh" scale="0.2 0.2 0.2" rotation="0 0 0" position="0 0 0" nav-mesh visible="false"></a-entity>
 
             <!-- COLUMNS : commented columns are for rooms/origin -->
@@ -358,24 +362,24 @@
             <!-- CABINETS & OBJECTS -->
             <a-entity id="cabinet-group">
                 <a-entity mixin="cabinet_v2_mix" position="-10.36 0 -11.84" rotation="0 90 0">
-                    <a-entity id="anubis" obj-model="obj:#anubisobj" material="src:#anubisimg" scale="0.6 0.6 0.6" position="0 6 -5.5" rotation="0 -90 0"></a-entity>
-                    <a-entity id="horus" obj-model="obj:#horusobj" material="src:#horusimg" scale="0.6 0.6 0.6" position="0 6 0"  rotation="0 -90 0"></a-entity>
-                    <a-entity id="isis" obj-model="obj:#isisobj" material="src:#isisimg" scale="0.6 0.6 0.6" position="0 6 5.5"  rotation="0 -90 0"></a-entity>
+                    <a-entity static-body id="anubis" class="clickable" object-component="" data-state="untouched" obj-model="obj:#anubisobj" material="src:#anubisimg" scale="0.6 0.6 0.6" position="0 6 -5.5" rotation="0 -90 0"></a-entity>
+                    <a-entity static-body id="horus" class="clickable" object-component="" data-state="untouched" obj-model="obj:#horusobj" material="src:#horusimg" scale="0.6 0.6 0.6" position="0 6 0"  rotation="0 -90 0"></a-entity>
+                    <a-entity static-body id="isis" class="clickable" object-component="" data-state="untouched" obj-model="obj:#isisobj" material="src:#isisimg" scale="0.6 0.6 0.6" position="0 6 5.5"  rotation="0 -90 0"></a-entity>
                 </a-entity>
 
                 <a-entity mixin="cabinet_v2_mix" position="10.36 0 -2.96" rotation="0 90 0">
-                    <a-entity id="moai1" obj-model="obj:#moai1obj" material="src:#moai1img" scale="0.6 0.6 0.6" position="0 6 -5.5" rotation="0 90 0"></a-entity>
-                    <a-entity id="moai2" obj-model="obj:#moai2obj" material="src:#moai2img" scale="0.6 0.6 0.6" position="0 6 0"  rotation="0 90 0"></a-entity>
-                    <a-entity id="moai3" obj-model="obj:#moai3obj" material="src:#moai3img" scale="0.6 0.6 0.6" position="0 6 5.5"  rotation="0 90 0"></a-entity>
+                    <a-entity static-body id="moai1" class="clickable" object-component="" data-state="untouched" obj-model="obj:#moai1obj" material="src:#moai1img" scale="0.6 0.6 0.6" position="0 6 -5.5" rotation="0 90 0"></a-entity>
+                    <a-entity static-body id="moai2" class="clickable" object-component="" data-state="untouched" obj-model="obj:#moai2obj" material="src:#moai2img" scale="0.6 0.6 0.6" position="0 6 0"  rotation="0 90 0"></a-entity>
+                    <a-entity static-body id="moai3" class="clickable" object-component="" data-state="untouched" obj-model="obj:#moai3obj" material="src:#moai3img" scale="0.6 0.6 0.6" position="0 6 5.5"  rotation="0 90 0"></a-entity>
                 </a-entity>
 
                 <a-entity mixin="cabinet_v2_mix" position="-11.84 0 10.36" rotation="0 0 0">
-                    <a-entity id="whalehat" obj-model="obj:#whalehatobj" material="src:#whaleimg" scale="0.6 0.6 0.6" position="0 6.4 -5.5" rotation="0 90 0"></a-entity>
-                    <a-entity id="turtlehat" obj-model="obj:#turtlehatobj" material="src:#turtleimg" scale="0.6 0.6 0.6" position="0 6.4 0"  rotation="0 0 0"></a-entity>
-                    <a-entity id="normhat" obj-model="obj:#normhatobj" material="src:#normimg" scale="0.6 0.6 0.6" position="0 6.4 5.5"  rotation="0 90 0"></a-entity>
+                    <a-entity static-body id="whalehat" class="clickable" object-component="" data-state="untouched" obj-model="obj:#whalehatobj" material="src:#whaleimg" scale="0.6 0.6 0.6" position="0 6.4 -5.5" rotation="0 90 0"></a-entity>
+                    <a-entity static-body id="turtlehat" class="clickable" object-component="" data-state="untouched" obj-model="obj:#turtlehatobj" material="src:#turtleimg" scale="0.6 0.6 0.6" position="0 6.4 0"  rotation="0 0 0"></a-entity>
+                    <a-entity static-body id="normhat" class="clickable" object-component="" data-state="untouched" obj-model="obj:#normhatobj" material="src:#normimg" scale="0.6 0.6 0.6" position="0 6.4 5.5"  rotation="0 90 0"></a-entity>
                 </a-entity>
 
-                <a-entity id="dropzone" obj-model="obj:#cabinet_small" material="src:#cabinet_small_img" scale="0.2 0.2 0.2" position="0 0 -2" rotation="0 90 0"></a-entity>
+                <a-entity static-body="shape:hull" id="dropzone" obj-model="obj:#cabinet_small" material="src:#cabinet_small_img" scale="0.2 0.2 0.2" position="0 0 -2" rotation="0 90 0"></a-entity>
             </a-entity>         
 
         </a-scene>
