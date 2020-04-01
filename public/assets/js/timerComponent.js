@@ -88,15 +88,15 @@ AFRAME.registerComponent('timer', {
   
   tick: function() {
     if(this.seconda!=0) {    
-      this.GetTimeLeft();
-      this.Setdigit();
+      this.getTimeRemaining();
+      this.setDigit();
       if(this.seconda==0) {
         this.timerDone();
       }
     }  
   },
 
-  Setdigit: function(){
+  setDigit: function(){
     var digitval= [[1,1,1,0,1,1,1],[0,0,1,0,0,1,0],[0,1,1,1,1,0,1],[0,1,1,1,1,1,0],[1,0,1,1,0,1,0],[1,1,0,1,1,1,0],[1,1,0,1,1,1,1],[0,1,1,0,0,1,0],[1,1,1,1,1,1,1],[1,1,1,1,0,1,0]]; 
     var tensPlace = Math.floor(this.seconda/10); 
     for(var a=0;a<7;a++) { 
@@ -118,7 +118,7 @@ AFRAME.registerComponent('timer', {
     alert("You ran out of time to find the artifact.");
   },
 
-  GetTimeLeft: function(){
+  getTimeRemaining: function(){
     let startDate = new Date();
     startDate = startDate.getTime();
       
