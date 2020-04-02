@@ -118,7 +118,12 @@
         socket.on("xyToProfessor", function(data){
             console.log("(" + data.x + ", " + data.y + ")")
             DrawMap(data.x * 18, data.y * 18)
-        })
+        });
+
+        //send chosen artifact to student
+        document.addEventListener('chosenArtifact', function() {
+                socket.emit('artifactSend', document.getElementById("artifactHint").getAttribute("data-name"));
+        });
 
         //TIMER FOR PROFESSOR PLAYER TO MEMORIZE ARTIFACT
         function firstTimer() {

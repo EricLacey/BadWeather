@@ -45,6 +45,10 @@ socketIO.on('connection', function(socket) {
     socket.on("coldToSocket", function(data){
         socketIO.sockets.emit("coldToStudent", data)
     });
+    socket.on("artifactSend", function(data){
+        socketIO.sockets.emit("artifactToStudent", data)
+        console.log("sent " + data)
+    });
 
 
 });

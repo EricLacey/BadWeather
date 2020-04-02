@@ -426,6 +426,10 @@
                 document.getElementById("tempTube").setAttribute("material", "color:blue")
                 tempTubeOpacity()
             })
+            socket.on("artifactToStudent", function(data){
+                console.log(data)
+                document.getElementById("dropzone").setAttribute("data-correct", data)
+            })
 
             //increase and decrease opacity
             function tempTubeOpacity(){

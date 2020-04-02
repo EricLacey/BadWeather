@@ -34,5 +34,10 @@ randomArtifact[4] = moai;
 function randomizeArtifacts() {
     let num = Math.floor( Math.random() * 5);
     let chosenArtifact = randomArtifact[num];
+
     document.getElementById("artifactHint").innerHTML = ('<img src="' + 'assets/userInterface/' + chosenArtifact.imageName + '" width="600px">')
+    document.getElementById("artifactHint").setAttribute("data-name", chosenArtifact.artifactName)
+
+    let event = new Event("chosenArtifact")
+    document.dispatchEvent(event)
 }
