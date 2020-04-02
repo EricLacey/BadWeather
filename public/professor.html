@@ -117,7 +117,7 @@
         <div>
             <button id="btnH" onclick="hotClick()">Hot</button>
             <button id="btnC" onclick="coldClick()">Cold</button>
-            <button id="GO" onclick="gameOver()">test Game Over</button> 
+          <!--  <button id="GO" onclick="gameOver()">test Game Over</button> -->
         </div>
     </div>
 
@@ -151,7 +151,7 @@
         //TIMER FOR PROFESSOR PLAYER TO MEMORIZE ARTIFACT
         function firstTimer() {
             // Set the date we're counting down to
-            let secs = 1;
+            let secs = 10;
             let now = new Date().getTime();
             let endTime = new Date().setTime(now + (secs * 1000))
 
@@ -183,7 +183,7 @@
         //TIMER FOR PROFESSOR PLAYER TO DRAW 
         function secondTimer() {
             // Set the date we're counting down to
-            let secs = 1;
+            let secs = 10;
             let now = new Date().getTime();
             let endTime = new Date().setTime(now + (secs * 1000))
 
