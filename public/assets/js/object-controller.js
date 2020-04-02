@@ -10,9 +10,14 @@ AFRAME.registerComponent('object-component', {
 
 
             if (e.detail.body.el.id == "dropzone"){
-                var event = new Event('objectCheck');
-                document.dispatchEvent(event)
-                console.log("dropzone-collide")
+
+                if (e.detail.body.el.getAttribute("data-correct") == Context_AF.el.getAttribute("id")){
+                    let event = new Event("correct-item")
+                    dispatchEvent(event)
+                } else {
+                    let event = new Event("wrong-item")
+                    document.dispatchEvent(event)
+                }
             }
             if (e.detail.body.el.id == "floor"){
                 Context_AF.el.removeAttribute("dynamic-body")
