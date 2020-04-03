@@ -50,7 +50,9 @@ socketIO.on('connection', function(socket) {
         console.log("sent " + data)
     });
 
-
+    socket.on("gameOver", function(data){
+        socketIO.sockets.emit("gameOverToProfessor", data)
+    });
 });
 
 //finally, start server

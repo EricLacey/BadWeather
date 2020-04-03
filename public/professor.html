@@ -76,14 +76,10 @@
     <!-- TARGET ARTIFACT APPEARS SCREEN -->
     <div id="artifactAppears" align="center" style="display:block">
         <p id="instructions">Remember this artifact!</p>
-
         <!-- RANDOM ARTIFACT -->
         <div id="artifactHint"></div>
-
         <p id="instructions">Time left:</p>
         <div id="firstTimer">timer</div>
-
-        <!-- <img src="assets/userInterface/paper01.png" id="artifactHint" alt="Image of an artifact here"/> -->
     </div>
 
     <!-- DRAWING SCREEN -->
@@ -148,7 +144,7 @@
 
         //send chosen artifact to student
         document.addEventListener('chosenArtifact', function() {
-                socket.emit('artifactSend', document.getElementById("artifactHint").getAttribute("data-name"));
+            socket.emit('artifactSend', document.getElementById("artifactHint").getAttribute("data-name"));
         });
 
         //TIMER FOR PROFESSOR PLAYER TO MEMORIZE ARTIFACT
@@ -232,7 +228,8 @@
         }
 
         // GAME OVER SCREEN
-        function gameOver(){                 
+        socket.on("gameOverToProfessor", function(){
+            console.log("game over")
             // hide map screen 
             document.getElementById('mapDiv').setAttribute("style", "display:none")
             // activate the Game Over section
@@ -241,7 +238,7 @@
             document.getElementById("foundArtifact").innerHTML = ('<img src="' + 'assets/userInterface/' + chosenArtifact.imageName + '" width="600px">')
             //get the target artifac discription
             document.getElementById("artifactFact").innerHTML = (chosenArtifact.fact)
-        }
+        })
 
     </script>
 </body>

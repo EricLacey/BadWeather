@@ -116,6 +116,8 @@ AFRAME.registerComponent('timer', {
 
   timerDone: function(){
     alert("You ran out of time to find the artifact.");
+    //Send game over is done to professor screens
+    socket.emit("gameOver")
   },
 
   getTimeRemaining: function(){
