@@ -117,7 +117,7 @@
     </div>
 
     <!--         GAME OVER SCREEN          -->
-    <div id="gameOver" align="center" style="display:none">
+    <div id="gameOverScreen" align="center" style="display:none">
         <div id="GOtxt">Game Over!</div>
         <!-- RANDOM ARTIFACT -->
         <div id="foundArtifact"></div>
@@ -233,13 +233,12 @@
             // hide map screen 
             document.getElementById('mapDiv').setAttribute("style", "display:none")
             // activate the Game Over section
-            document.getElementById('gameOver').setAttribute("style", "display:block")
+            document.getElementById('gameOverScreen').setAttribute("style", "display:block")
             // get the target artifact img
             document.getElementById("foundArtifact").innerHTML = ('<img src="' + 'assets/userInterface/' + chosenArtifact.imageName + '" width="600px">')
-            //get the target artifac discription
+            //get the target artifact description
             document.getElementById("artifactFact").innerHTML = (chosenArtifact.fact)
         })
-
     </script>
 </body>
 </html>

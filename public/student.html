@@ -471,6 +471,17 @@
             }
 
             let locationSend = setInterval(sendXY, 100)
+
+            //event listener for when game is over from student environment
+            document.addEventListener('game-over-student-timer', function() {
+                //not sure what to put here
+            });
+
+            // GAME OVER
+            socket.on("game-over-student-timer", function(){
+                socket.emit(gameOverSend)
+            })
+
         </script>
     </body>
 </html>
