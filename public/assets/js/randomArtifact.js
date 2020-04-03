@@ -4,23 +4,28 @@
 //objects
 const anubis = {
     'imageName': '1.png',
-    'artifactName': 'anubis'
+    'artifactName': 'anubis',
+    'group' : 'egypt'
 }
 const horus = {
     'imageName': '2.png',
-    'artifactName': 'horus'
+    'artifactName': 'horus',
+    'group' : 'egypt'
 }
 const isis = {
     'imageName': '3.png',
-    'artifactName': 'isis'
+    'artifactName': 'isis',
+    'group' : 'egypt'
 }
 const whalehat = {
     'imageName': '4.png',
-    'artifactName': 'whalehat'
+    'artifactName': 'whalehat',
+    'group' : 'aboriginal'
 }
 const moai = {
     'imageName': '5.png',
-    'artifactName': 'moai'
+    'artifactName': 'moai',
+    'group' : 'moai'
 }
 
 //array of objects
@@ -37,6 +42,7 @@ function randomizeArtifacts() {
 
     document.getElementById("artifactHint").innerHTML = ('<img src="' + 'assets/userInterface/' + chosenArtifact.imageName + '" width="600px">')
     document.getElementById("artifactHint").setAttribute("data-name", chosenArtifact.artifactName)
+    document.getElementById("artifactHint").setAttribute("data-group", chosenArtifact.group)
 
     let event = new Event("chosenArtifact")
     document.dispatchEvent(event)

@@ -109,6 +109,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         let socket = io();
+        let mapArea = 0
 
         //default connect event
         socket.on('connect', function() {
@@ -122,7 +123,9 @@
 
         //send chosen artifact to student
         document.addEventListener('chosenArtifact', function() {
-                socket.emit('artifactSend', document.getElementById("artifactHint").getAttribute("data-name"));
+                let artifactName = document.getElementById("artifactHint").getAttribute("data-name")
+                socket.emit('artifactSend', artifactName);
+
         });
 
         //TIMER FOR PROFESSOR PLAYER TO MEMORIZE ARTIFACT
