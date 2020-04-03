@@ -49,9 +49,24 @@
             font-size: 20px;
             font-family: 'PT Sans', sans-serif;
         }
-        /*#artifactHint{
-            width:55%;
-        }*/
+        /* GAME OVER STYLES */
+        #GOtxt{
+            font-family: 'PT Sans', sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #foundArtifact{
+            transform: scale(0.8);
+        }
+        #artifactFact{
+            font-family: 'PT Sans', sans-serif;
+        }
+        #thanking{
+            font-family: 'PT Sans', sans-serif;
+            font-size: 20px;
+            padding: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -103,6 +118,17 @@
             <button id="btnH" onclick="hotClick()">Hot</button>
             <button id="btnC" onclick="coldClick()">Cold</button>
         </div>
+    </div>
+
+    <!--         GAME OVER SCREEN          -->
+    <div id="gameOver" align="center" style="display:none">
+        <div id="GOtxt">Game Over!</div>
+        <!-- RANDOM ARTIFACT -->
+        <div id="foundArtifact"></div>
+        <!--  ARTIFACT FACT -->
+        <div id="artifactFact"></div>
+        <!--  THANKS FOR PLAYING -->
+        <div id="thanking">Thank you for playing!</div>
     </div>
 
     <!-- SOCKET EVENTS -->
@@ -205,6 +231,17 @@
             socket.emit("coldToSocket")
         }
 
+        // GAME OVER SCREEN
+        function gameOver(){                 
+            // hide map screen 
+            document.getElementById('mapDiv').setAttribute("style", "display:none")
+            // activate the Game Over section
+            document.getElementById('gameOver').setAttribute("style", "display:block")
+            // get the target artifact img
+            document.getElementById("foundArtifact").innerHTML = ('<img src="' + 'assets/userInterface/' + chosenArtifact.imageName + '" width="600px">')
+            //get the target artifac discription
+            document.getElementById("artifactFact").innerHTML = (chosenArtifact.fact)
+        }
 
     </script>
 </body>
