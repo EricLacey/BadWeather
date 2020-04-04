@@ -49,7 +49,6 @@ socketIO.on('connection', function(socket) {
         socketIO.sockets.emit("artifactToStudent", data)
         console.log("sent " + data)
     });
-
     socket.on("gameOverSend", function(data){
         socketIO.sockets.emit("gameOverToProfessor", data)
     });

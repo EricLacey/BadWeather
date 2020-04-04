@@ -479,8 +479,8 @@
             });
 
             // GAME OVER
-            socket.on("game-over-student-timer", function(){
-                socket.emit(gameOverSend)
+            document.addEventListener("game-over-student-timer", function(){
+                socket.emit("gameOverSend")
             })
 
         </script>
