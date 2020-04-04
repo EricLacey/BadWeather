@@ -43,7 +43,6 @@ let chosenArtifact = randomArtifact[num];
 function randomizeArtifacts() {
     //display target object image as a hint for drawing
     document.getElementById("artifactHint").innerHTML = ('<img src="' + 'assets/userInterface/' + chosenArtifact.imageName + '" width="600px">')
-    document.getElementById("artifactHint").setAttribute("data-name", chosenArtifact.artifactName)
 
     let event = new Event("chosenArtifact")
     document.dispatchEvent(event)

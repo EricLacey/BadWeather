@@ -144,7 +144,7 @@
 
         //send chosen artifact to student
         document.addEventListener('chosenArtifact', function() {
-            socket.emit('artifactSend', document.getElementById("artifactHint").getAttribute("data-name"));
+            socket.emit(chosenArtifact.artifactName);
         });
 
         //TIMER FOR PROFESSOR PLAYER TO MEMORIZE ARTIFACT
