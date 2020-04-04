@@ -70,7 +70,7 @@
     </style>
 </head>
 
-<body onload="start()">
+<body>
     <img id="mapImage" src="assets/userInterface/mazelayout.png" alt="maze background" style="display:none">
 
     <!-- TARGET ARTIFACT APPEARS SCREEN -->
@@ -239,6 +239,35 @@
             //get the target artifact description
             document.getElementById("artifactFact").innerHTML = (chosenArtifact.fact)
         })
+
+        socket.on("pollRequest", function(){
+            socket.emit("pollResponse", "professor")
+
+            setTimeout(function(){socket.emit("ready")}, 100)
+        })
+        socket.on("waitingForPlayer", function(){
+            alert("Waiting for additional player")
+        })
+        socket.on("partnerDisconnected", function(){
+            alert("Partner has disconnected")
+            window.location.replace("http://localhost:8080");
+        })
+        socket.on("tooManyPlayers", function(){
+            alert("Lobby is full, redirecting to home")
+            window.location.replace("http://localhost:8080");
+        })
+        socket.on("duplicateUserType", function(){
+            alert("Existing Professor already in lobby, redirecting to home")
+            window.location.replace("http://localhost:8080");
+        })
+        socket.on("gameStart", function(){
+            start()
+        })
+        document.querySelector('body').addEventListener('loaded', function () {
+                socket.emit("ready")
+            })
+
+
     </script>
 </body>
 </html>

@@ -77,9 +77,10 @@
                 <a-entity id="playerCam" static-body="shape:none" camera position="0 1.7 0 " look-controls="pointerLockEnabled:false"> 
                     <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                             raycaster="far:10; interval:100; objects:.clickable"></a-entity>
-                <a-entity id="tempTube" geometry="primitive: cylinder; openEnded: true ; radius:0.5; height:0.8" rotation="90 0 0" material="side:double; transparent:true; opacity:0; visible:false"></a-entity>
-                <!-- TIMER -->
-                <a-entity id="timer" timer="timerDuration:60; timerColor:black" position="0 1.2 -2" rotation="30 0 0"></a-entity> <!-- timer position in frame -->
+                    <a-entity id="tempTube" geometry="primitive: cylinder; openEnded: true ; radius:0.5; height:0.8" rotation="90 0 0" material="side:double; transparent:true; opacity:0; visible:false"></a-entity>
+                    <!-- TIMER -->
+                    <a-entity id="timer" position="0 1.2 -2" rotation="30 0 0"></a-entity> <!-- timer position in frame -->
+                    <a-entity id="playerShroud" geometry="primitive: sphere" material="side:double; transparent:true; opacity:0.7; color:black"></a-entity>
                 </a-entity>
                 
                 <!-- BACKGROUND MUSIC, parented to camera so same loudness throughout: https://joshondesign.com/2017/07/24/aframe_tips -->
@@ -417,6 +418,10 @@
                 newObject.setAttribute("material", "color:none; side:double")
 
                 document.getElementById("playerCam").appendChild(newObject)
+
+                let newTimer = document.createElement('a-entity')
+                newTimer.setAttribute("timer", "timerDuration:60; timerColor:black")
+                document.getElementById("timer").appendChild(newTimer)
             })
 
             //hot cold 
@@ -431,8 +436,9 @@
                 tempTubeOpacity()
             })
             socket.on("artifactToStudent", function(data){
-                console.log(data)
                 document.getElementById("dropzone").setAttribute("data-correct", data)
+
+
             })
             // GAME OVER STATES
             document.addEventListener("correct-item", function(){
@@ -480,6 +486,34 @@
                                 }
                             }, intervalDur)
                         }
+
+
+            socket.on("pollRequest", function(){
+                socket.emit("pollResponse", "student")
+            })
+            socket.on("waitingForPlayer", function(){
+                //alert("Waiting for additional player")
+            })
+            socket.on("partnerDisconnected", function(){
+                alert("Partner has disconnected")
+                window.location.replace("http://localhost:8080");
+            })
+            socket.on("tooManyPlayers", function(){
+                alert("Lobby is full, redirecting to home")
+                window.location.replace("http://localhost:8080");
+            })
+            socket.on("duplicateUserType", function(){
+                alert("Existing Student already in lobby, redirecting to home")
+                window.location.replace("http://localhost:8080");
+            })
+
+
+            document.querySelector('a-scene').addEventListener('loaded', function () {
+                console.log("loaded")
+                socket.emit("ready")
+            })
+
+
         </script>
     </body>
 </html>
