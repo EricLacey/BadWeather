@@ -73,7 +73,7 @@
             <a-mixin id="cabinet_v2_mix" obj-model="obj:#cabinet_v2" material="src:#cabinet_img" scale="0.2 0.2 0.2"></a-mixin>
 
             <!-- CAMERA -->
-            <a-entity id="rig"  movement-controls="constrainToNavMesh:true; controls:keyboard">
+            <a-entity id="rig" movement-controls="constrainToNavMesh:true; controls:keyboard; enabled:false" >
                 <a-entity id="playerCam" static-body="shape:none" camera position="0 1.7 0 " look-controls="pointerLockEnabled:false"> 
                     <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                             raycaster="far:10; interval:100; objects:.clickable"></a-entity>
@@ -422,6 +422,12 @@
                 let newTimer = document.createElement('a-entity')
                 newTimer.setAttribute("timer", "timerDuration:60; timerColor:black")
                 document.getElementById("timer").appendChild(newTimer)
+
+                document.getElementById("rig").setAttribute("movement-controls", "constrainToNavMesh:true; controls:keyboard; enabled:true")
+                
+                
+                let shroud = document.getElementById("playerShroud")
+                shroud.parentNode.removeChild(shroud)
             })
 
             //hot cold 
@@ -492,7 +498,7 @@
                 socket.emit("pollResponse", "student")
             })
             socket.on("waitingForPlayer", function(){
-                //alert("Waiting for additional player")
+                alert("Waiting for additional player")
             })
             socket.on("partnerDisconnected", function(){
                 alert("Partner has disconnected")
@@ -509,8 +515,8 @@
 
 
             document.querySelector('a-scene').addEventListener('loaded', function () {
-                console.log("loaded")
                 socket.emit("ready")
+
             })
 
 
