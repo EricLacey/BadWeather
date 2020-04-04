@@ -49,9 +49,24 @@
             font-size: 20px;
             font-family: 'PT Sans', sans-serif;
         }
-        /*#artifactHint{
-            width:55%;
-        }*/
+        /* GAME OVER STYLES */
+        #GOtxt{
+            font-family: 'PT Sans', sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #foundArtifact{
+            transform: scale(0.8);
+        }
+        #artifactFact{
+            font-family: 'PT Sans', sans-serif;
+        }
+        #thanking{
+            font-family: 'PT Sans', sans-serif;
+            font-size: 20px;
+            padding: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -61,14 +76,10 @@
     <!-- TARGET ARTIFACT APPEARS SCREEN -->
     <div id="artifactAppears" align="center" style="display:block">
         <p id="instructions">Remember this artifact!</p>
-
         <!-- RANDOM ARTIFACT -->
         <div id="artifactHint"></div>
-
         <p id="instructions">Time left:</p>
         <div id="firstTimer">timer</div>
-
-        <!-- <img src="assets/userInterface/paper01.png" id="artifactHint" alt="Image of an artifact here"/> -->
     </div>
 
     <!-- DRAWING SCREEN -->
@@ -105,6 +116,17 @@
         </div>
     </div>
 
+    <!--         GAME OVER SCREEN          -->
+    <div id="gameOverScreen" align="center" style="display:none">
+        <div id="GOtxt">Game Over!</div>
+        <!-- RANDOM ARTIFACT -->
+        <div id="foundArtifact"></div>
+        <!--  ARTIFACT FACT -->
+        <div id="artifactFact"></div>
+        <!--  THANKS FOR PLAYING -->
+        <div id="thanking">Thank you for playing!</div>
+    </div>
+
     <!-- SOCKET EVENTS -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -122,7 +144,7 @@
 
         //send chosen artifact to student
         document.addEventListener('chosenArtifact', function() {
-                socket.emit('artifactSend', document.getElementById("artifactHint").getAttribute("data-name"));
+            socket.emit('artifactSend', document.getElementById("artifactHint").getAttribute("data-name"));
         });
 
         //TIMER FOR PROFESSOR PLAYER TO MEMORIZE ARTIFACT
@@ -205,7 +227,18 @@
             socket.emit("coldToSocket")
         }
 
-
+        // GAME OVER SCREEN
+        socket.on("gameOverToProfessor", function(){
+            console.log("game over")
+            // hide map screen 
+            document.getElementById('mapDiv').setAttribute("style", "display:none")
+            // activate the Game Over section
+            document.getElementById('gameOverScreen').setAttribute("style", "display:block")
+            // get the target artifact img
+            document.getElementById("foundArtifact").innerHTML = ('<img src="' + 'assets/userInterface/' + chosenArtifact.imageName + '" width="600px">')
+            //get the target artifact description
+            document.getElementById("artifactFact").innerHTML = (chosenArtifact.fact)
+        })
     </script>
 </body>
 </html>
