@@ -12,11 +12,11 @@ AFRAME.registerComponent('object-component', {
             if (e.detail.body.el.id == "dropzone"){
 
                 if (e.detail.body.el.getAttribute("data-correct") == Context_AF.el.getAttribute("id")){
-                    let event = new Event("correct-item")
-                    dispatchEvent(event)
+                    let corEvent = new Event("correct-item")
+                    document.dispatchEvent(corEvent)
                 } else {
-                    let event = new Event("wrong-item")
-                    document.dispatchEvent(event)
+                    let wroEvent = new Event("wrong-item")
+                    document.dispatchEvent(wroEvent)
                 }
             }
             if (e.detail.body.el.id == "floor"){

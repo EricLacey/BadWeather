@@ -443,16 +443,19 @@
             })
             socket.on("artifactToStudent", function(data){
                 document.getElementById("dropzone").setAttribute("data-correct", data)
-
-
             })
+
             // GAME OVER STATES
+
             document.addEventListener("correct-item", function(){
                 socket.emit("gameOverSend", "win")
+                alert("You found the correct item! Go talk to your friend to learn more about what you found")
             })
+
             document.addEventListener("wrong-item", function(){
-                socket.emit("gameOverSend", "fail")
+                alert("Wrong item! Keep looking!")
             })
+
             document.addEventListener("game-over-student-timer", function(){
                 socket.emit("gameOverSend", "fail")
             })

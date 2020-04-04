@@ -145,7 +145,7 @@
 
         //send chosen artifact to student
         document.addEventListener('chosenArtifact', function() {
-            socket.emit(chosenArtifact.artifactName);
+            socket.emit("artifactSend", chosenArtifact.artifactName);
         });
 
         //TIMER FOR PROFESSOR PLAYER TO MEMORIZE ARTIFACT
@@ -229,7 +229,14 @@
         }
 
         // GAME OVER SCREEN
-        socket.on("gameOverToProfessor", function(){
+        socket.on("gameOverToProfessor", function(data){
+
+            if (data=="win"){
+                alert("Your partner found the item! You win!")
+            } else if (data == "fail"){
+                alert("Your partner couldn't find the item. Better look next time!")
+            }
+
             console.log("game over")
             // hide map screen 
             document.getElementById('mapDiv').setAttribute("style", "display:none")
