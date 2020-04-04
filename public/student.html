@@ -77,12 +77,14 @@
                     <a-entity cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse"
                             raycaster="far:10; interval:100; objects:.clickable"></a-entity>
                 <a-entity id="tempTube" geometry="primitive: cylinder; openEnded: true ; radius:0.5; height:0.8" rotation="90 0 0" material="side:double; transparent:true; opacity:0; visible:false"></a-entity>
+                <!-- TIMER -->
+                <a-entity id="timer" timer="timerDuration:60; timerColor:black" position="0 1.2 -2" rotation="30 0 0"></a-entity> <!-- timer position in frame -->
                 </a-entity>
                 
                 <!-- BACKGROUND MUSIC, parented to camera so same loudness throughout: https://joshondesign.com/2017/07/24/aframe_tips -->
                 <a-sound src="url(/assets/audio/backgroundSong.mp3)" autoplay="true" position="0 0 0" loop="true" volume="0.55"></a-sound>
-                <!-- TIMER -->
-                <a-entity id="timer" timer="timerDuration:60; timerColor:black" position="0 7 -8"></a-entity> <!-- timer position in frame -->
+                
+                
             </a-entity>
 
             <!-- ROOM -->
