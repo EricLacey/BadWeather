@@ -10,7 +10,7 @@ function InitMap() {
 
 function DrawMap(x,y) {
     mapCTX = document.getElementById('mapCanvas').getContext("2d");
-    let group = document.getElementById("artifactHint").getAttribute("data-group")
+    let group = chosenArtifact.group
 
 
     mapImage = document.getElementById('mapImage')
