@@ -397,6 +397,8 @@
         <script>
             let socket = io();
 
+
+            //EVENT BASED CODE
             //default connect event
             socket.on('connect', function() {
                 console.log("connected!");
@@ -422,7 +424,6 @@
                 console.log("hot")
                 document.getElementById("tempTube").setAttribute("material", "color:red")
                 tempTubeOpacity()
-
             })
             socket.on("coldToStudent", function(){
                 console.log("cold")
@@ -433,40 +434,19 @@
                 console.log(data)
                 document.getElementById("dropzone").setAttribute("data-correct", data)
             })
-
-            //increase and decrease opacity
-            function tempTubeOpacity(){
-                let opacity = 0.0
-                let turningOpaque = true
-                let increase = 0.05
-                let intervalDur = 50
-                let maxOpacity = 0.6
-
-                document.getElementById("tempTube").setAttribute("material", "visible:true")
-                let tubeFade = setInterval(function(){
-                    if (turningOpaque == true){
-                        opacity += increase
-                    }else{
-                        opacity -= increase
-                    }
-                    document.getElementById("tempTube").setAttribute("material", "opacity:" + opacity)
-                    
-                    if (opacity >= maxOpacity){
-                        turningOpaque = false
-                    } else if (opacity <= 0){
-                        document.getElementById("tempTube").setAttribute("material", "visible:false")
-                        clearInterval(tubeFade)
-                    }
-                }, intervalDur)
-            }
-
+            // GAME OVER STATES
             document.addEventListener("correct-item", function(){
-
+                socket.emit("gameOverSend", "win")
             })
             document.addEventListener("wrong-item", function(){
-
+                socket.emit("gameOverSend", "fail")
+            })
+            document.addEventListener("game-over-student-timer", function(){
+                socket.emit("gameOverSend", "fail")
             })
 
+
+            //GENERAL FUNCTIONS
             //send the xy coordinates
             function sendXY(){
                 let position = {x: document.getElementById("rig").getAttribute("position").x, y: document.getElementById("rig").getAttribute("position").z}
@@ -475,17 +455,31 @@
 
             let locationSend = setInterval(sendXY, 100)
 
-            //event listener for when game is over from student environment
-            document.addEventListener('game-over-student-timer', function() {
-                //not sure what to put here
-                //socket.emit('gameOver', getAttribute("data-name"));
-            });
+            //increase and decrease opacity
+            function tempTubeOpacity(){
+                            let opacity = 0.0
+                            let turningOpaque = true
+                            let increase = 0.05
+                            let intervalDur = 50
+                            let maxOpacity = 0.6
 
-            // GAME OVER
-            document.addEventListener("game-over-student-timer", function(){
-                socket.emit("gameOverSend")
-            })
-
+                            document.getElementById("tempTube").setAttribute("material", "visible:true")
+                            let tubeFade = setInterval(function(){
+                                if (turningOpaque == true){
+                                    opacity += increase
+                                }else{
+                                    opacity -= increase
+                                }
+                                document.getElementById("tempTube").setAttribute("material", "opacity:" + opacity)
+                                
+                                if (opacity >= maxOpacity){
+                                    turningOpaque = false
+                                } else if (opacity <= 0){
+                                    document.getElementById("tempTube").setAttribute("material", "visible:false")
+                                    clearInterval(tubeFade)
+                                }
+                            }, intervalDur)
+                        }
         </script>
     </body>
 </html>
